@@ -1,2 +1,3 @@
 # Zwaar
-Page for Zwaar Developers
+The company page for Zwaar developers.
+Made with flutter.

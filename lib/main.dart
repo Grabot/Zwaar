@@ -12,7 +12,7 @@ void main() {
           // Define the default font family.
           fontFamily: 'Georgia',
         ),
-        initialRoute: '/one',
+        initialRoute: '/',
         routes: {
           HomePage.route: (context) => HomePage(),
           PageOne.route: (context) => PageOne(),

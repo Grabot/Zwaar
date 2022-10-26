@@ -4,7 +4,7 @@ import '../util/app_bar.dart';
 
 class PageOne extends StatefulWidget {
 
-  static const String route = '/two';
+  static const String route = '/one';
 
   const PageOne({Key? key}) : super(key: key);
 
@@ -23,7 +23,7 @@ class _PageOneState extends State<PageOne> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: const <Widget>[
             Text(
-              'Page Two',
+              'Page One',
             ),
           ],
         ),

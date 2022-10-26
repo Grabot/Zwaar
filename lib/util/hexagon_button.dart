@@ -6,12 +6,14 @@ class HexagonButton extends StatefulWidget {
   final double xPos;
   final double yPos;
   final double radius;
+  final int buttonFunction;
 
   const HexagonButton({
     required Key key,
     required this.xPos,
     required this.yPos,
-    required this.radius
+    required this.radius,
+    required this.buttonFunction
   }) : super(key: key);
 
   @override
@@ -28,6 +30,8 @@ class _HexagonButtonState extends State<HexagonButton> {
 
   double paintOffsetX = 0;
   double paintOffsetY = 0;
+
+  bool hoverActive = false;
 
   @override
   void initState() {
@@ -47,6 +51,17 @@ class _HexagonButtonState extends State<HexagonButton> {
   hoverHexagonButton(bool hover) {
     print("hovering hexagon button: $hover");
     test!.changeColour(hover);
+    setState(() {
+      hoverActive = hover;
+    });
+  }
+
+  getButtonFunctionality() {
+    if (widget.buttonFunction == 1) {
+      return githubWidget();
+    } else {
+      return Container();
+    }
   }
 
   @override
@@ -56,16 +71,23 @@ class _HexagonButtonState extends State<HexagonButton> {
       left: widget.xPos-radius,
       child: Stack(
         children: [
+          hoverActive ? Container(
+            height: (math.sqrt(3) * radius) - containerOffset,
+            width: (2 * radius) - containerOffset,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(200),
+                boxShadow: [
+                  BoxShadow(
+                    color: Color(0xffaabbff),
+                    blurRadius: 30.0,
+                    spreadRadius: 20.0,
+                  ),
+                ]),
+          ) : Container(),
           CustomPaint(
               painter: test!
           ),
-          Container(
-            height: (math.sqrt(3) * radius) - containerOffset,
-            width: (2 * radius) - containerOffset,
-            child: Image(
-                image: AssetImage("assets/images/Github_logo_PNG1.png"),
-            ),
-          ),
+          getButtonFunctionality(),
           Container(
             height: (math.sqrt(3) * radius) - containerOffset,
             width: (2 * radius) - containerOffset,
@@ -84,6 +106,34 @@ class _HexagonButtonState extends State<HexagonButton> {
       ),
     );
   }
+
+  TextStyle buttonTextStyle() {
+    if (hoverActive) {
+      return const TextStyle(color: Color(0xff2d2d2d), fontSize: 30, fontWeight: FontWeight.bold);
+    } else {
+      return const TextStyle(color: Color(0x8c000000), fontSize: 30, fontWeight: FontWeight.bold);
+    }
+  }
+
+  Widget githubWidget() {
+    return Column(
+        children: [
+          // The image in the hexagon, leave space at the bottom for text
+          Container(
+            height: (math.sqrt(3) * radius) - containerOffset - 30,
+            width: (2 * radius) - containerOffset,
+            child: Image(
+              image: AssetImage("assets/images/github.png"),
+            ),
+          ),
+          Text(
+              style: buttonTextStyle(),
+              "Github"
+          )
+        ]
+    );
+  }
+
 }
 
 class HexagonPainter extends CustomPainter {
@@ -91,11 +141,13 @@ class HexagonPainter extends CustomPainter {
   final double radius;
   final Offset center;
 
-  Paint normalColour = Paint()..color = Colors.lightBlue;
-  Paint hoverColour = Paint()..color = Colors.blue;
-  Paint currentColour = Paint()..color = Colors.lightBlue;
+  Paint normalColour = Paint()..color = Color(0xff006dff);
+  Paint hoverColour = Paint()..color = Color(0xff8de4ff);
+  Paint currentColour = Paint()..color = Colors.blue;
 
-  HexagonPainter(this.center, this.radius);
+  HexagonPainter(this.center, this.radius) {
+    currentColour = normalColour;
+  }
 
   @override
   void paint(Canvas canvas, Size size) {
