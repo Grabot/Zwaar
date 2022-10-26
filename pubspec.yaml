@@ -63,6 +63,7 @@ flutter:
   assets:
     - assets/images/brocast_transparent.png
     - assets/images/github.png
+    - assets/images/team.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

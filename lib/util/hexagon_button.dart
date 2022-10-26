@@ -57,7 +57,7 @@ class _HexagonButtonState extends State<HexagonButton> {
   }
 
   getButtonFunctionality() {
-    if (widget.buttonFunction == 1) {
+    if (widget.buttonFunction == 4) {
       return githubWidget();
     } else {
       return Container();
@@ -76,7 +76,7 @@ class _HexagonButtonState extends State<HexagonButton> {
             width: (2 * radius) - containerOffset,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(200),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     color: Color(0xffaabbff),
                     blurRadius: 30.0,
@@ -100,6 +100,9 @@ class _HexagonButtonState extends State<HexagonButton> {
                 hoverHexagonButton(val);
               },
               hoverColor: Colors.transparent, // We will do our own hover thing
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              focusColor: Colors.transparent
             ),
           ),
         ],
@@ -119,13 +122,15 @@ class _HexagonButtonState extends State<HexagonButton> {
     return Column(
         children: [
           // The image in the hexagon, leave space at the bottom for text
+          const SizedBox(height: 10),
           Container(
-            height: (math.sqrt(3) * radius) - containerOffset - 30,
+            height: (math.sqrt(3) * radius) - containerOffset - 80,
             width: (2 * radius) - containerOffset,
-            child: Image(
+            child: const Image(
               image: AssetImage("assets/images/github.png"),
             ),
           ),
+          const SizedBox(height: 20),
           Text(
               style: buttonTextStyle(),
               "Github"
@@ -141,8 +146,8 @@ class HexagonPainter extends CustomPainter {
   final double radius;
   final Offset center;
 
-  Paint normalColour = Paint()..color = Color(0xff006dff);
-  Paint hoverColour = Paint()..color = Color(0xff8de4ff);
+  Paint normalColour = Paint()..color = const Color(0xff006dff);
+  Paint hoverColour = Paint()..color = const Color(0xff8de4ff);
   Paint currentColour = Paint()..color = Colors.blue;
 
   HexagonPainter(this.center, this.radius) {
