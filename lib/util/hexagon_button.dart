@@ -57,7 +57,11 @@ class _HexagonButtonState extends State<HexagonButton> {
   }
 
   getButtonFunctionality() {
-    if (widget.buttonFunction == 4) {
+    if (widget.buttonFunction == 1) {
+      return teamWidget();
+    } else if (widget.buttonFunction == 2) {
+      return broCastWidget();
+    } else if (widget.buttonFunction == 3) {
       return githubWidget();
     } else {
       return Container();
@@ -116,6 +120,47 @@ class _HexagonButtonState extends State<HexagonButton> {
     } else {
       return const TextStyle(color: Color(0x8c000000), fontSize: 30, fontWeight: FontWeight.bold);
     }
+  }
+
+  Widget teamWidget() {
+    return Column(
+        children: [
+          // The image in the hexagon, leave space at the bottom for text
+          const SizedBox(height: 10),
+          Container(
+            height: (math.sqrt(3) * radius) - containerOffset - 80,
+            width: (2 * radius) - containerOffset,
+            child: const Image(
+              image: AssetImage("assets/images/team.png"),
+            ),
+          ),
+          const SizedBox(height: 20),
+          Text(
+              style: buttonTextStyle(),
+              "The Team"
+          )
+        ]
+    );
+  }
+
+  Widget broCastWidget() {
+    return Column(
+        children: [
+          // The image in the hexagon, leave space at the bottom for text
+          const SizedBox(height: 10),
+          Container(
+            height: (math.sqrt(3) * radius) - containerOffset - 50,
+            width: (2 * radius) - containerOffset,
+            child: const Image(
+              image: AssetImage("assets/images/brocast_transparent_2.png"),
+            ),
+          ),
+          Text(
+              style: buttonTextStyle(),
+              "Brocast"
+          )
+        ]
+    );
   }
 
   Widget githubWidget() {
