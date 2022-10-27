@@ -19,30 +19,32 @@ class _ContactState extends State<Contact> {
     return Scaffold(
       appBar: appBarAgeOfGold(context, false),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            logo(),
-            const SizedBox(height: 200),
-            const Text(
-              "Thanks for Visiting Zwaar Developers",
-              style: TextStyle(color: Color(0xfff1f1f1), fontSize: 20)
-            ),
-            const SizedBox(height: 60),
-            const Text(
-                "If you want to get in touch with the team to ask for our services,",
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              logo(),
+              const SizedBox(height: 200),
+              const Text(
+                "Thanks for Visiting Zwaar Developers",
                 style: TextStyle(color: Color(0xfff1f1f1), fontSize: 20)
-            ),
-            const Text(
-                "please download our app \"Brocast\" and send a message to \"Sander 🥰\"",
-                style: TextStyle(color: Color(0xfff1f1f1), fontSize: 20)
-            ),
-            const SizedBox(height: 20),
-            const Text(
-                "Or send an email to the CEO at \"SanderKools@zwaar.dev\"",
-                style: TextStyle(color: Color(0xfff1f1f1), fontSize: 20)
-            ),
-          ],
+              ),
+              const SizedBox(height: 60),
+              const Text(
+                  "If you want to get in touch with the team to ask for our services,",
+                  style: TextStyle(color: Color(0xfff1f1f1), fontSize: 20)
+              ),
+              const Text(
+                  "please download our app \"Brocast\" and send a message to \"Sander 🥰\"",
+                  style: TextStyle(color: Color(0xfff1f1f1), fontSize: 20)
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                  "Or send an email to the CEO at \"SanderKools@zwaar.dev\"",
+                  style: TextStyle(color: Color(0xfff1f1f1), fontSize: 20)
+              ),
+            ],
+          ),
         ),
       ),
     );
