@@ -62,9 +62,12 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/brocast_transparent.png
-    - assets/images/brocast_transparent_2.png
     - assets/images/github.png
+    - assets/images/ageOfGold.png
+    - assets/images/contact.png
     - assets/images/team.png
+    - assets/images/Zwaar.png
+    - assets/images/Logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

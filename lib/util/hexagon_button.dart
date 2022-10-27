@@ -63,6 +63,10 @@ class _HexagonButtonState extends State<HexagonButton> {
       return broCastWidget();
     } else if (widget.buttonFunction == 3) {
       return githubWidget();
+    } else if (widget.buttonFunction == 4) {
+      return ageOfGoldWidget();
+    } else if (widget.buttonFunction == 5) {
+      return contactWidget();
     } else {
       return Container();
     }
@@ -152,12 +156,33 @@ class _HexagonButtonState extends State<HexagonButton> {
             height: (math.sqrt(3) * radius) - containerOffset - 50,
             width: (2 * radius) - containerOffset,
             child: const Image(
-              image: AssetImage("assets/images/brocast_transparent_2.png"),
+              image: AssetImage("assets/images/brocast_transparent.png"),
             ),
           ),
           Text(
               style: buttonTextStyle(),
               "Brocast"
+          )
+        ]
+    );
+  }
+
+  Widget contactWidget() {
+    return Column(
+        children: [
+          // The image in the hexagon, leave space at the bottom for text
+          const SizedBox(height: 30),
+          Container(
+            height: (math.sqrt(3) * radius) - containerOffset - 100,
+            width: (2 * radius) - containerOffset,
+            child: const Image(
+              image: AssetImage("assets/images/contact.png"),
+            ),
+          ),
+          const SizedBox(height: 20),
+          Text(
+              style: buttonTextStyle(),
+              "Contact"
           )
         ]
     );
@@ -179,6 +204,27 @@ class _HexagonButtonState extends State<HexagonButton> {
           Text(
               style: buttonTextStyle(),
               "Github"
+          )
+        ]
+    );
+  }
+
+  Widget ageOfGoldWidget() {
+    return Column(
+        children: [
+          // The image in the hexagon, leave space at the bottom for text
+          const SizedBox(height: 30),
+          Container(
+            height: (math.sqrt(3) * radius) - containerOffset - 120,
+            width: (2 * radius) - containerOffset,
+            child: const Image(
+              image: AssetImage("assets/images/ageOfGold.png"),
+            ),
+          ),
+          const SizedBox(height: 20),
+          Text(
+              style: buttonTextStyle(),
+              "Age of Gold"
           )
         ]
     );

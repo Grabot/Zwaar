@@ -17,7 +17,7 @@ class _PageOneState extends State<PageOne> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarAgeOfGold(),
+      appBar: appBarAgeOfGold(context),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
