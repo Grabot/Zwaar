@@ -4,7 +4,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-AppBar appBarAgeOfGold(BuildContext context) {
+AppBar appBarAgeOfGold(BuildContext context, bool isHome) {
   double width = MediaQuery.of(context).size.width;
   double loginWidth = 100;
   return AppBar(
@@ -14,7 +14,7 @@ AppBar appBarAgeOfGold(BuildContext context) {
     flexibleSpace: Container(
       color: Colors.orange,
     ),
-    leading: topAppBarRow(width, loginWidth),
+    leading: topAppBarRow(context, isHome),
     leadingWidth: width-loginWidth,
     automaticallyImplyLeading: false,
     actions: <Widget>[
@@ -39,13 +39,14 @@ AppBar appBarAgeOfGold(BuildContext context) {
 
 
 
-Widget topAppBarRow(double width, double loginWidth) {
-  double buttonWidth = (width - loginWidth - 200) / 5;
+Widget topAppBarRow(BuildContext context, bool isHome) {
   return Row(
       children: [
         InkWell(
           onTap: () {
-            print("pressed Home button");
+            if (!isHome) {
+              Navigator.pushNamed(context, '/');
+            }
           },
           child: Container(
             padding: EdgeInsets.all(16),

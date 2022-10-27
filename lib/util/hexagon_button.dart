@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:zwaar/views/contact.dart';
+import 'package:zwaar/views/team.dart';
 import 'dart:math' as math;
+import 'package:url_launcher/url_launcher.dart';
+
+import 'hexagon_painter.dart';
 
 class HexagonButton extends StatefulWidget {
 
@@ -24,7 +29,7 @@ class _HexagonButtonState extends State<HexagonButton> {
 
   double radius = 100;
 
-  HexagonPainter? test;
+  HexagonPainter? hexagon;
 
   double containerOffset = 0;
 
@@ -43,14 +48,14 @@ class _HexagonButtonState extends State<HexagonButton> {
     paintOffsetX = radius - (containerOffset/2);
     paintOffsetY = (math.sqrt(3) * radius)/2 - (containerOffset / 2);
 
-    test = HexagonPainter(
+    hexagon = HexagonPainter(
         Offset(paintOffsetX, paintOffsetY),
         radius);
   }
 
   hoverHexagonButton(bool hover) {
     print("hovering hexagon button: $hover");
-    test!.changeColour(hover);
+    hexagon!.changeColour(hover);
     setState(() {
       hoverActive = hover;
     });
@@ -69,6 +74,37 @@ class _HexagonButtonState extends State<HexagonButton> {
       return contactWidget();
     } else {
       return Container();
+    }
+  }
+
+  pressedHexagonButton() async {
+    if (widget.buttonFunction == 1) {
+      Navigator.pushNamed(context, Team.route);
+    } else if (widget.buttonFunction == 2) {
+      const url = 'https://www.brocast.nl';
+      if (await canLaunch(url)) {
+        await launch(url);
+      } else {
+        throw 'Could not launch $url';
+      }
+    } else if (widget.buttonFunction == 3) {
+      const url = 'https://www.github.com/Grabot';
+      if (await canLaunch(url)) {
+        await launch(url);
+      } else {
+        throw 'Could not launch $url';
+      }
+    } else if (widget.buttonFunction == 4) {
+      const url = 'https://ageof.gold';
+      if (await canLaunch(url)) {
+        await launch(url);
+      } else {
+        throw 'Could not launch $url';
+      }
+    } else if (widget.buttonFunction == 5) {
+      Navigator.pushNamed(context, Contact.route);
+    } else {
+      // should not happen
     }
   }
 
@@ -93,7 +129,7 @@ class _HexagonButtonState extends State<HexagonButton> {
                 ]),
           ) : Container(),
           CustomPaint(
-              painter: test!
+              painter: hexagon!
           ),
           getButtonFunctionality(),
           Container(
@@ -102,7 +138,7 @@ class _HexagonButtonState extends State<HexagonButton> {
             color: Colors.transparent,
             child: InkWell(
               onTap: () {
-                print("tapped");
+                pressedHexagonButton();
               },
               onHover: (val) {
                 hoverHexagonButton(val);
@@ -230,50 +266,4 @@ class _HexagonButtonState extends State<HexagonButton> {
     );
   }
 
-}
-
-class HexagonPainter extends CustomPainter {
-  static const int SIDES_OF_HEXAGON = 6;
-  final double radius;
-  final Offset center;
-
-  Paint normalColour = Paint()..color = const Color(0xff006dff);
-  Paint hoverColour = Paint()..color = const Color(0xff8de4ff);
-  Paint currentColour = Paint()..color = Colors.blue;
-
-  HexagonPainter(this.center, this.radius) {
-    currentColour = normalColour;
-  }
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    Path path = createHexagonPath();
-    canvas.drawPath(path, currentColour);
-  }
-
-  changeColour(bool hover) {
-    print("change colour?");
-    if (hover) {
-      currentColour = hoverColour;
-    } else {
-      currentColour = normalColour;
-    }
-  }
-
-  Path createHexagonPath() {
-    final path = Path();
-    var angle = (math.pi * 2) / SIDES_OF_HEXAGON;
-    Offset firstPoint = Offset(radius * math.cos(0.0), radius * math.sin(0.0));
-    path.moveTo(firstPoint.dx + center.dx, firstPoint.dy + center.dy);
-    for (int i = 1; i <= SIDES_OF_HEXAGON; i++) {
-      double x = radius * math.cos(angle * i) + center.dx;
-      double y = radius * math.sin(angle * i) + center.dy;
-      path.lineTo(x, y);
-    }
-    path.close();
-    return path;
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) => false;
 }

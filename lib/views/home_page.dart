@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: appBarAgeOfGold(context),
+      appBar: appBarAgeOfGold(context, true),
       body: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
         print("height: ${constraints.maxHeight}  width: ${constraints.maxWidth}");
@@ -134,15 +134,15 @@ class _HomePageState extends State<HomePage> {
       left: xPos - (logoWidth / 2),
       child: Column(
         children: [
-          Container(
+          SizedBox(
             height: 150,
             width: logoWidth-50,
             child: const Image(
               image: AssetImage("assets/images/Zwaar.png"),
             ),
           ),
-          Text(
-            "Developers",
+          const Text(
+            "       Developers",
             style: TextStyle(color: Color(0xff949494), fontSize: 30, fontWeight: FontWeight.bold)
           )
         ]

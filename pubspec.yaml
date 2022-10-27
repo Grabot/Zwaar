@@ -47,6 +47,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  url_launcher: ^6.1.6
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -68,6 +69,12 @@ flutter:
     - assets/images/team.png
     - assets/images/Zwaar.png
     - assets/images/Logo.png
+    - assets/images/CCO.png
+    - assets/images/CEO.png
+    - assets/images/co_founder.png
+    - assets/images/content_manager.png
+    - assets/images/CTO.png
+    - assets/images/founder.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
