@@ -3,7 +3,7 @@ import 'dart:math' as math;
 
 
 class HexagonPainter extends CustomPainter {
-  static const int SIDES_OF_HEXAGON = 6;
+  static const int sidesOfHexagon = 6;
   final double radius;
   final Offset center;
 
@@ -22,7 +22,6 @@ class HexagonPainter extends CustomPainter {
   }
 
   changeColour(bool hover) {
-    print("change colour?");
     if (hover) {
       currentColour = hoverColour;
     } else {
@@ -32,10 +31,10 @@ class HexagonPainter extends CustomPainter {
 
   Path createHexagonPath() {
     final path = Path();
-    var angle = (math.pi * 2) / SIDES_OF_HEXAGON;
+    var angle = (math.pi * 2) / sidesOfHexagon;
     Offset firstPoint = Offset(radius * math.cos(0.0), radius * math.sin(0.0));
     path.moveTo(firstPoint.dx + center.dx, firstPoint.dy + center.dy);
-    for (int i = 1; i <= SIDES_OF_HEXAGON; i++) {
+    for (int i = 1; i <= sidesOfHexagon; i++) {
       double x = radius * math.cos(angle * i) + center.dx;
       double y = radius * math.sin(angle * i) + center.dy;
       path.lineTo(x, y);

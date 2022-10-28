@@ -17,23 +17,6 @@ AppBar appBarAgeOfGold(BuildContext context, bool isHome) {
     leading: topAppBarRow(context, isHome),
     leadingWidth: width-loginWidth,
     automaticallyImplyLeading: false,
-    actions: <Widget>[
-      Container(
-          width: 100,
-          child: Column(
-            children: [
-              const SizedBox(height: 10),
-              IconButton(
-                icon: const Icon(Icons.account_circle_rounded),
-                onPressed: () {
-                  print("pressed this");
-                },
-              ),
-              const Text("not logged in")
-            ],
-          )
-      ),
-    ],
   );
 }
 
@@ -49,10 +32,10 @@ Widget topAppBarRow(BuildContext context, bool isHome) {
             }
           },
           child: Container(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             width: 150,
             height: 80,
-            child: Image(
+            child: const Image(
               image: AssetImage(
                   "assets/images/Logo.png",
               ),

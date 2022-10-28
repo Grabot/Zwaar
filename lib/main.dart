@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:zwaar/views/contact.dart';
 import 'package:zwaar/views/home_page.dart';
-import 'package:zwaar/views/page_one.dart';
 import 'package:zwaar/views/team.dart';
+import 'package:url_strategy/url_strategy.dart';
+
 
 void main() {
+  setPathUrlStrategy();
+
   runApp(
       MaterialApp(
         theme: ThemeData(
@@ -16,10 +19,9 @@ void main() {
         ),
         initialRoute: '/',
         routes: {
-          HomePage.route: (context) => HomePage(),
-          PageOne.route: (context) => PageOne(),
-          Team.route: (context) => Team(),
-          Contact.route: (context) => Contact()
+          HomePage.route: (context) => const HomePage(),
+          Team.route: (context) => const Team(),
+          Contact.route: (context) => const Contact()
         },
       )
   );

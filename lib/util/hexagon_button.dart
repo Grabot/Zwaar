@@ -3,7 +3,6 @@ import 'package:zwaar/views/contact.dart';
 import 'package:zwaar/views/team.dart';
 import 'dart:math' as math;
 import 'package:url_launcher/url_launcher.dart';
-
 import 'hexagon_painter.dart';
 
 class HexagonButton extends StatefulWidget {
@@ -12,20 +11,24 @@ class HexagonButton extends StatefulWidget {
   final double yPos;
   final double radius;
   final int buttonFunction;
+  final double maxWidth;
+  final double maxHeight;
 
   const HexagonButton({
     required Key key,
     required this.xPos,
     required this.yPos,
     required this.radius,
-    required this.buttonFunction
+    required this.buttonFunction,
+    required this.maxWidth,
+    required this.maxHeight
   }) : super(key: key);
 
   @override
-  _HexagonButtonState createState() => _HexagonButtonState();
+  HexagonButtonState createState() => HexagonButtonState();
 }
 
-class _HexagonButtonState extends State<HexagonButton> {
+class HexagonButtonState extends State<HexagonButton> {
 
   double radius = 100;
 
@@ -38,11 +41,13 @@ class _HexagonButtonState extends State<HexagonButton> {
 
   bool hoverActive = false;
 
+  double fontSize = 30;
   @override
   void initState() {
     super.initState();
     radius = widget.radius;
 
+    fontSize = radius / 5;
     containerOffset = (radius/4);
 
     paintOffsetX = radius - (containerOffset/2);
@@ -54,7 +59,6 @@ class _HexagonButtonState extends State<HexagonButton> {
   }
 
   hoverHexagonButton(bool hover) {
-    print("hovering hexagon button: $hover");
     hexagon!.changeColour(hover);
     setState(() {
       hoverActive = hover;
@@ -77,30 +81,24 @@ class _HexagonButtonState extends State<HexagonButton> {
     }
   }
 
+  Future<void> _launchUrl(Uri url) async {
+    if (!await launchUrl(url)) {
+      throw 'Could not launch $url';
+    }
+  }
+
   pressedHexagonButton() async {
     if (widget.buttonFunction == 1) {
       Navigator.pushNamed(context, Team.route);
     } else if (widget.buttonFunction == 2) {
-      const url = 'https://www.brocast.nl';
-      if (await canLaunch(url)) {
-        await launch(url);
-      } else {
-        throw 'Could not launch $url';
-      }
+      final Uri url = Uri.parse('https://www.brocast.nl');
+      _launchUrl(url);
     } else if (widget.buttonFunction == 3) {
-      const url = 'https://www.github.com/Grabot';
-      if (await canLaunch(url)) {
-        await launch(url);
-      } else {
-        throw 'Could not launch $url';
-      }
+      final Uri url = Uri.parse('https://www.github.com/Grabot');
+      _launchUrl(url);
     } else if (widget.buttonFunction == 4) {
-      const url = 'https://ageof.gold';
-      if (await canLaunch(url)) {
-        await launch(url);
-      } else {
-        throw 'Could not launch $url';
-      }
+      final Uri url = Uri.parse('https://ageof.gold');
+      _launchUrl(url);
     } else if (widget.buttonFunction == 5) {
       Navigator.pushNamed(context, Contact.route);
     } else {
@@ -119,7 +117,7 @@ class _HexagonButtonState extends State<HexagonButton> {
             height: (math.sqrt(3) * radius) - containerOffset,
             width: (2 * radius) - containerOffset,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(200),
+                borderRadius: BorderRadius.circular(100),
                 boxShadow: const [
                   BoxShadow(
                     color: Color(0xffaabbff),
@@ -156,19 +154,23 @@ class _HexagonButtonState extends State<HexagonButton> {
 
   TextStyle buttonTextStyle() {
     if (hoverActive) {
-      return const TextStyle(color: Color(0xff2d2d2d), fontSize: 30, fontWeight: FontWeight.bold);
+      return TextStyle(color: const Color(0xff2d2d2d), fontSize: fontSize, fontWeight: FontWeight.bold);
     } else {
-      return const TextStyle(color: Color(0x8c000000), fontSize: 30, fontWeight: FontWeight.bold);
+      return TextStyle(color: const Color(0x8c000000), fontSize: fontSize, fontWeight: FontWeight.bold);
     }
   }
 
   Widget teamWidget() {
+    double teamOffset = 80;
+    if (widget.maxWidth < 800) {
+      teamOffset = widget.maxWidth / 10;
+    }
     return Column(
         children: [
           // The image in the hexagon, leave space at the bottom for text
-          const SizedBox(height: 10),
-          Container(
-            height: (math.sqrt(3) * radius) - containerOffset - 80,
+          SizedBox(height: fontSize-10),
+          SizedBox(
+            height: (math.sqrt(3) * radius) - containerOffset - teamOffset,
             width: (2 * radius) - containerOffset,
             child: const Image(
               image: AssetImage("assets/images/team.png"),
@@ -184,12 +186,16 @@ class _HexagonButtonState extends State<HexagonButton> {
   }
 
   Widget broCastWidget() {
+    double offsetBrocast = 50;
+    if (widget.maxWidth < 800) {
+      offsetBrocast = widget.maxWidth / 15;
+    }
     return Column(
         children: [
           // The image in the hexagon, leave space at the bottom for text
-          const SizedBox(height: 10),
-          Container(
-            height: (math.sqrt(3) * radius) - containerOffset - 50,
+          SizedBox(height: fontSize-10),
+          SizedBox(
+            height: (math.sqrt(3) * radius) - containerOffset - offsetBrocast,
             width: (2 * radius) - containerOffset,
             child: const Image(
               image: AssetImage("assets/images/brocast_transparent.png"),
@@ -204,12 +210,16 @@ class _HexagonButtonState extends State<HexagonButton> {
   }
 
   Widget contactWidget() {
+    double offsetContact = 100;
+    if (widget.maxWidth < 800) {
+      offsetContact = widget.maxWidth / 8;
+    }
     return Column(
         children: [
           // The image in the hexagon, leave space at the bottom for text
-          const SizedBox(height: 30),
-          Container(
-            height: (math.sqrt(3) * radius) - containerOffset - 100,
+          SizedBox(height: fontSize),
+          SizedBox(
+            height: (math.sqrt(3) * radius) - containerOffset - offsetContact,
             width: (2 * radius) - containerOffset,
             child: const Image(
               image: AssetImage("assets/images/contact.png"),
@@ -225,12 +235,16 @@ class _HexagonButtonState extends State<HexagonButton> {
   }
 
   Widget githubWidget() {
+    double offsetGithub = 80;
+    if (widget.maxWidth < 800) {
+      offsetGithub = widget.maxWidth / 10;
+    }
     return Column(
         children: [
           // The image in the hexagon, leave space at the bottom for text
-          const SizedBox(height: 10),
-          Container(
-            height: (math.sqrt(3) * radius) - containerOffset - 80,
+          SizedBox(height: fontSize-10),
+          SizedBox(
+            height: (math.sqrt(3) * radius) - containerOffset - offsetGithub,
             width: (2 * radius) - containerOffset,
             child: const Image(
               image: AssetImage("assets/images/github.png"),
@@ -246,18 +260,22 @@ class _HexagonButtonState extends State<HexagonButton> {
   }
 
   Widget ageOfGoldWidget() {
+    double offsetAgeOfGold = 80;
+    if (widget.maxWidth < 800) {
+      offsetAgeOfGold = widget.maxWidth / 10;
+    }
     return Column(
         children: [
           // The image in the hexagon, leave space at the bottom for text
-          const SizedBox(height: 30),
-          Container(
-            height: (math.sqrt(3) * radius) - containerOffset - 120,
+          SizedBox(height: fontSize),
+          SizedBox(
+            height: (math.sqrt(3) * radius) - containerOffset - offsetAgeOfGold,
             width: (2 * radius) - containerOffset,
             child: const Image(
               image: AssetImage("assets/images/ageOfGold.png"),
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 0),
           Text(
               style: buttonTextStyle(),
               "Age of Gold"
