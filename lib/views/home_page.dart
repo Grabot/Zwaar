@@ -41,10 +41,9 @@ class _HomePageState extends State<HomePage> {
           buttonRadius = 300;
         }
         if (constraints.maxWidth < 1200) {
-          print("width: ${constraints.maxWidth}  height: ${constraints.maxHeight}");
           return Stack(
             children: <Widget>[
-              logo(constraints.maxWidth/2, 0, constraints.maxWidth, constraints.maxHeight),
+              logo(constraints.maxWidth),
               HexagonButton(
                   key: UniqueKey(),
                   xPos: constraints.maxWidth / 2,
@@ -95,7 +94,7 @@ class _HomePageState extends State<HomePage> {
         } else {
           return Stack(
             children: <Widget>[
-              logo(constraints.maxWidth / 2, 0, constraints.maxWidth, constraints.maxHeight),
+              logo(constraints.maxWidth),
               HexagonButton(
                   key: UniqueKey(),
                   xPos: constraints.maxWidth / 2,
@@ -149,7 +148,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget logo(double xPos, double yPos, double maxWidth, double maxHeight) {
+  Widget logo(double maxWidth) {
     double logoWidth = 600;
     double logoHeight = 150;
     double sizeOfFont = 30;
@@ -158,9 +157,7 @@ class _HomePageState extends State<HomePage> {
       logoHeight = maxWidth/6;
       sizeOfFont = 10;
     }
-    return Positioned(
-      top: yPos,
-      left: xPos - (logoWidth / 2),
+    return Center(
       child: Column(
         children: [
           SizedBox(
