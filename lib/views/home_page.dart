@@ -24,26 +24,26 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
+    bool showLogo = true;
     return Scaffold(
       appBar: appBarAgeOfGold(context, true),
       body: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth < 600 || constraints.maxHeight < 700) {
-          buttonRadius = 70;
-        } else if (constraints.maxWidth < 800 || constraints.maxHeight < 800) {
-          buttonRadius = 100;
-        } else if (constraints.maxHeight < 1400 || constraints.maxWidth < 2200) {
-          buttonRadius = 150;
-        } else if (constraints.maxHeight < 1800 || constraints.maxWidth < 3500) {
-          buttonRadius = 220;
-        } else {
-          buttonRadius = 300;
-        }
+            print("height: ${constraints.maxHeight}   ${constraints.minHeight}");
+            if (constraints.maxHeight < 300) {
+              showLogo = false;
+            } else {
+              showLogo = true;
+            }
+            if (constraints.maxWidth < constraints.maxHeight) {
+              buttonRadius = constraints.maxWidth / 8;
+            } else {
+              buttonRadius = constraints.maxHeight / 8;
+            }
         if (constraints.maxWidth < 1200) {
           return Stack(
             children: <Widget>[
-              logo(constraints.maxWidth),
+              showLogo ? logo(constraints.maxWidth) : Container(),
               HexagonButton(
                   key: UniqueKey(),
                   xPos: constraints.maxWidth / 2,
@@ -94,7 +94,7 @@ class _HomePageState extends State<HomePage> {
         } else {
           return Stack(
             children: <Widget>[
-              logo(constraints.maxWidth),
+              showLogo ? logo(constraints.maxWidth) : Container(),
               HexagonButton(
                   key: UniqueKey(),
                   xPos: constraints.maxWidth / 2,

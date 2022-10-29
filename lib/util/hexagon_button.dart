@@ -76,9 +76,8 @@ class HexagonButtonState extends State<HexagonButton> {
       return ageOfGoldWidget();
     } else if (widget.buttonFunction == 5) {
       return contactWidget();
-    } else {
-      return Container();
     }
+    return Container();
   }
 
   Future<void> _launchUrl(Uri url) async {
@@ -108,6 +107,7 @@ class HexagonButtonState extends State<HexagonButton> {
 
   @override
   Widget build(BuildContext context) {
+    print("max height: ${widget.maxHeight}   top: ${widget.yPos-radius}");
     return Positioned(
       top: widget.yPos-radius,
       left: widget.xPos-radius,
@@ -124,8 +124,7 @@ class HexagonButtonState extends State<HexagonButton> {
                     blurRadius: 30.0,
                     spreadRadius: 20.0,
                   ),
-                ]),
-          ) : Container(),
+                ]),) : Container(),
           CustomPaint(
               painter: hexagon!
           ),
@@ -161,14 +160,11 @@ class HexagonButtonState extends State<HexagonButton> {
   }
 
   Widget teamWidget() {
-    double teamOffset = 80;
-    if (widget.maxWidth < 800) {
-      teamOffset = widget.maxWidth / 10;
-    }
+    double teamOffset = radius/2;
     return Column(
         children: [
           // The image in the hexagon, leave space at the bottom for text
-          SizedBox(height: fontSize-10),
+          SizedBox(height: fontSize),
           SizedBox(
             height: (math.sqrt(3) * radius) - containerOffset - teamOffset,
             width: (2 * radius) - containerOffset,
@@ -176,7 +172,7 @@ class HexagonButtonState extends State<HexagonButton> {
               image: AssetImage("assets/images/team.png"),
             ),
           ),
-          const SizedBox(height: 20),
+          // const SizedBox(height: 20),
           Text(
               style: buttonTextStyle(),
               "The Team"
@@ -186,16 +182,13 @@ class HexagonButtonState extends State<HexagonButton> {
   }
 
   Widget broCastWidget() {
-    double offsetBrocast = 50;
-    if (widget.maxWidth < 800) {
-      offsetBrocast = widget.maxWidth / 15;
-    }
+    double brocastOffset = radius/3;
     return Column(
         children: [
           // The image in the hexagon, leave space at the bottom for text
-          SizedBox(height: fontSize-10),
+          SizedBox(height: fontSize/2),
           SizedBox(
-            height: (math.sqrt(3) * radius) - containerOffset - offsetBrocast,
+            height: (math.sqrt(3) * radius) - containerOffset - brocastOffset,
             width: (2 * radius) - containerOffset,
             child: const Image(
               image: AssetImage("assets/images/brocast_transparent.png"),
@@ -204,28 +197,24 @@ class HexagonButtonState extends State<HexagonButton> {
           Text(
               style: buttonTextStyle(),
               "Brocast"
-          )
+          ),
         ]
     );
   }
 
   Widget contactWidget() {
-    double offsetContact = 100;
-    if (widget.maxWidth < 800) {
-      offsetContact = widget.maxWidth / 8;
-    }
+    double contactOffset = radius/2;
     return Column(
         children: [
           // The image in the hexagon, leave space at the bottom for text
           SizedBox(height: fontSize),
           SizedBox(
-            height: (math.sqrt(3) * radius) - containerOffset - offsetContact,
+            height: (math.sqrt(3) * radius) - containerOffset - contactOffset,
             width: (2 * radius) - containerOffset,
             child: const Image(
               image: AssetImage("assets/images/contact.png"),
             ),
           ),
-          const SizedBox(height: 20),
           Text(
               style: buttonTextStyle(),
               "Contact"
@@ -235,22 +224,18 @@ class HexagonButtonState extends State<HexagonButton> {
   }
 
   Widget githubWidget() {
-    double offsetGithub = 80;
-    if (widget.maxWidth < 800) {
-      offsetGithub = widget.maxWidth / 10;
-    }
+    double githubOffset = radius/2;
     return Column(
         children: [
           // The image in the hexagon, leave space at the bottom for text
-          SizedBox(height: fontSize-10),
+          SizedBox(height: fontSize),
           SizedBox(
-            height: (math.sqrt(3) * radius) - containerOffset - offsetGithub,
+            height: (math.sqrt(3) * radius) - containerOffset - githubOffset,
             width: (2 * radius) - containerOffset,
             child: const Image(
               image: AssetImage("assets/images/github.png"),
             ),
           ),
-          const SizedBox(height: 20),
           Text(
               style: buttonTextStyle(),
               "Github"
@@ -260,16 +245,13 @@ class HexagonButtonState extends State<HexagonButton> {
   }
 
   Widget ageOfGoldWidget() {
-    double offsetAgeOfGold = 80;
-    if (widget.maxWidth < 800) {
-      offsetAgeOfGold = widget.maxWidth / 10;
-    }
+    double ageOfGoldOffset = radius/2;
     return Column(
         children: [
           // The image in the hexagon, leave space at the bottom for text
           SizedBox(height: fontSize),
           SizedBox(
-            height: (math.sqrt(3) * radius) - containerOffset - offsetAgeOfGold,
+            height: (math.sqrt(3) * radius) - containerOffset - ageOfGoldOffset,
             width: (2 * radius) - containerOffset,
             child: const Image(
               image: AssetImage("assets/images/ageOfGold.png"),
