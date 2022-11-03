@@ -82,7 +82,7 @@ class _TeamState extends State<Team> {
                         width,
                         "Sander",
                         "CEO",
-                        "Sander Kools joined the team quickly after the founding. His prowess and technical skill quickly made him an integral part of the company. It was ony obvious that someone with his skill and experience would some day lead the company.\nSince he took over the role of CEO from Sander the company has seen a meteoric rise.\n(It's the guy, not the dog)",
+                        "Sander Kools joined the team quickly after the founding. His prowess and technical skill quickly made him an integral part of the company. It was only obvious that someone with his skill and experience would some day lead the company.\nSince he took over the role of CEO from Sander the company has seen a meteoric rise.\n(It's the guy, not the dog)",
                         "Who are you and why are you not working?! You're FIRED!",
                         "assets/images/CEO.png"
                     ),
@@ -149,7 +149,7 @@ Widget logo(double maxWidth) {
           height: logoHeight,
           width: logoWidth-50,
           child: const Image(
-            image: AssetImage("assets/images/Zwaar.png"),
+            image: AssetImage("assets/images/Zwaar_Logo.png"),
           ),
         ),
         Text(

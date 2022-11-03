@@ -71,7 +71,7 @@ class _ContactState extends State<Contact> {
               height: logoHeight,
               width: logoWidth-50,
               child: const Image(
-                image: AssetImage("assets/images/Zwaar.png"),
+                image: AssetImage("assets/images/Zwaar_Logo.png"),
               ),
             ),
             Text(

@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
       body: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
             print("height: ${constraints.maxHeight}   ${constraints.minHeight}");
-            if (constraints.maxHeight < 300) {
+            if (constraints.maxHeight < 400) {
               showLogo = false;
             } else {
               showLogo = true;
@@ -160,11 +160,12 @@ class _HomePageState extends State<HomePage> {
     return Center(
       child: Column(
         children: [
+          SizedBox(height: 50),
           SizedBox(
             height: logoHeight,
             width: logoWidth-50,
             child: const Image(
-              image: AssetImage("assets/images/Zwaar.png"),
+              image: AssetImage("assets/images/Zwaar_Logo.png"),
               fit: BoxFit.fill,
             ),
           ),
