@@ -150,19 +150,16 @@ class _HomePageState extends State<HomePage> {
 
   Widget logo(double maxWidth) {
     double logoWidth = 600;
-    double logoHeight = 150;
     double sizeOfFont = 30;
     if (maxWidth < 800) {
       logoWidth = (maxWidth/5)*4;
-      logoHeight = maxWidth/6;
       sizeOfFont = 10;
     }
     return Center(
       child: Column(
         children: [
-          SizedBox(height: 50),
+          SizedBox(height: 10),
           SizedBox(
-            height: logoHeight,
             width: logoWidth-50,
             child: const Image(
               image: AssetImage("assets/images/Zwaar_Logo.png"),

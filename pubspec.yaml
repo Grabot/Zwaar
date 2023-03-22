@@ -77,6 +77,13 @@ flutter:
     - assets/images/CTO.png
     - assets/images/founder.png
     - assets/images/max_import_export.png
+    - assets/images/art/IMG_20200803_222627.jpg
+    - assets/images/art/IMG_20210821_124105.jpg
+    - assets/images/art/IMG_20210821_124116.jpg
+    - assets/images/art/IMG_20211114_115030.jpg
+    - assets/images/art/IMG_20230322_171419.jpg
+    - assets/images/art/IMG_20230322_171735.jpg
+    - assets/images/art/IMG_20230322_171958.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

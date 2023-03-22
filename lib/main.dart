@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zwaar/views/contact.dart';
 import 'package:zwaar/views/home_page.dart';
+import 'package:zwaar/views/images.dart';
 import 'package:zwaar/views/team.dart';
 import 'package:url_strategy/url_strategy.dart';
 
@@ -21,7 +22,8 @@ void main() {
         routes: {
           HomePage.route: (context) => const HomePage(),
           Team.route: (context) => const Team(),
-          Contact.route: (context) => const Contact()
+          Contact.route: (context) => const Contact(),
+          Images.route: (context) => const Images()
         },
       )
   );
