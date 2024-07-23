@@ -1,6 +1,20 @@
-<script>	
+<script>
+	import { onMount } from "svelte";
+
+	// A box and corresponding width and height value of the box.
+	// The box is set to the full screen width and height 
+	// and we observe the box for any changes in the size
+	let screenBox;
+	let screenWidth = 0;
+	let screenHeight = 0;
+
+	// The internal dimensions of the svg viewBox. 
 	const width = 100;
 	const height = 100;
+
+	// Actual size of the hexagon on the screen
+	const hexWidth = 100;
+	const hexHeight = 100;
 	
 	const sidesOfHexagon = 6;
 	const radius = width/2;
@@ -20,13 +34,34 @@
 	var polygonColour = "#0000FFFF";
 
 	function handleClick(e) {
-		console.log("key press: " + e);
+		console.log("click event: " + e);
 		polygonColour = "#FF0000FF";
 	}
+
+	// Add the observer when component mounts and cleanup after
+	onMount(() => {
+		const resizeObserver = new ResizeObserver(entries => {
+			// We're only watching one element
+			const entry = entries.at(0);
+
+			//Get the block size
+			screenWidth = entry.contentRect.width;
+			screenHeight = entry.contentRect.height;
+		});
+		resizeObserver.observe(screenBox);
+	
+		// This callback cleans up the observer
+		return () => resizeObserver.unobserve(screenBox);
+	});
 </script>
 
+<main>
+	<!-- Width is {screenWidth}px  Height is {screenHeight}px -->
+	<div class="screen_box" bind:this={screenBox}></div>
+</main>
+
 <div class="hex_item">
-	<svg id="hex_svg" class="svg_style" width=400 height=400 viewBox="0 0 {width} {height}">
+	<svg id="hex_svg" class="svg_style" width={{hexWidth}} height={{hexHeight}} viewBox="0 0 {width} {height}">
 		<g id=hex_button fill="{polygonColour}" on:click={handleClick} on:keydown={handleClick}>
 			<polygon stroke-width=0 points="
 																{points[0][0]},{points[0][1]}
@@ -37,8 +72,8 @@
 																{points[5][0]},{points[5][1]}">
 			</polygon>
 			<!-- We add an image to the svg. We have a placeholder image and we set the height to half of the svg viewbox
-			 We position the x and y start of the image 1/4 of the width and height, 
-			 which will position the center of the image in the center of the svg. -->
+				We position the x and y start of the image 1/4 of the width and height, 
+				which will position the center of the image in the center of the svg. -->
 			<image href="https://via.placeholder.com/100" height="{height/2}" width="{width/2}" x="{width/4}" y="{height/4}"/>
 		</g>
 	</svg>
@@ -63,5 +98,23 @@
 	#hex_button:hover {
 		cursor: pointer;
 		fill: #F00;
+	}
+
+	main {
+		font-family: sans-serif;
+		text-align: center;
+	}
+
+	/* the way we detect the screen size. 
+	We create an element and make it be the full size of the screen 
+	and we observe the width and height of this element. */
+	:global(body) {
+		margin: 0;
+		padding: 0;
+	}
+	.screen_box {
+		width: 100vw;
+		height: 100vh;
+		background-color: green;
 	}
 </style>

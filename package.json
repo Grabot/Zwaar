@@ -21,6 +21,7 @@
   "dependencies": {
     "konva": "^9.3.13",
     "sirv-cli": "^2.0.0",
-    "svelte-konva": "^0.3.1"
+    "svelte-konva": "^0.3.1",
+    "svelte-resize-observer-action": "^0.0.4"
   }
 }
