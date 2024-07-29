@@ -24,7 +24,7 @@
 	// We will use the q, r, s coordinates system even though just q, r should be sufficient.
 	const hexagons = [];
 	hexagons.push([0, 0, 0]);
-	// hexagons.push([0, -1, 1]);
+	hexagons.push([0, -1, 1]);
 	// hexagons.push([1, -1, 0]);
 	// hexagons.push([1, 0, -1]);
 	// hexagons.push([0, 1, -1]);
