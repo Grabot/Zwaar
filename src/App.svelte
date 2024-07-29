@@ -25,11 +25,11 @@
 	const hexagons = [];
 	hexagons.push([0, 0, 0]);
 	hexagons.push([0, -1, 1]);
-	// hexagons.push([1, -1, 0]);
-	// hexagons.push([1, 0, -1]);
-	// hexagons.push([0, 1, -1]);
-	// hexagons.push([-1, 1, 0]);
-	// hexagons.push([-1, 0, 1]);
+	hexagons.push([1, -1, 0]);
+	hexagons.push([1, 0, -1]);
+	hexagons.push([0, 1, -1]);
+	hexagons.push([-1, 1, 0]);
+	hexagons.push([-1, 0, 1]);
 </script>
 
 <main>
