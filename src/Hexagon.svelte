@@ -48,7 +48,6 @@
 
 	function handleClick(e) {
 		console.log("click event: " + e);
-		polygonColour = "#FF0000FF";
 	}
 
 	export const updateHexagon = function(hexagonSize) {
@@ -74,7 +73,7 @@
             <!-- We add an image to the svg. We have a placeholder image and we set the height to half of the svg viewbox
                 We position the x and y start of the image 1/4 of the width and height, 
                 which will position the center of the image in the center of the svg. -->
-            <image href="https://via.placeholder.com/100" height="{ySize/2}" width="{xSize/2}" x="{xSize/4}" y="{ySize/4}"/>
+            <!-- <image href="https://via.placeholder.com/100" height="{ySize/2}" width="{xSize/2}" x="{xSize/4}" y="{ySize/4}"/> -->
         </g>
     </svg>
 </div>
@@ -106,10 +105,10 @@
 
 	#hex_button {
 		pointer-events: None;
-		stroke: chartreuse;
-		stroke-width: 2;
+		stroke: aqua;
+		stroke-width: 5;
 		cursor: pointer;
-		fill: #900;
+		fill: midnightblue;
 	}
 	#hex_button:hover {
 		cursor: pointer;

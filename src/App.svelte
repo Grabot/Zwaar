@@ -20,9 +20,9 @@
 			screenWidth = entry.contentRect.width;
 			screenHeight = entry.contentRect.height;
 			if (screenWidth > screenHeight) {
-				hexSize = screenWidth / 22;
+				hexSize = screenWidth / 20;
 			} else {
-				hexSize = screenHeight / 22;
+				hexSize = screenHeight / 20;
 			}
 			for (let i = 0; i <= hex.length - 1; i++) {
 				hex[i].updateHexagon(hexSize);
@@ -59,7 +59,7 @@
 	hexagons.push([-2, 0, 2]);
 	hexagons.push([-1, -1, 2]);
 	// The third layer
-	hexagons.push([0, -3, 3]);
+	hexagons.push([0, -3, 3]);  // The top
 	hexagons.push([1, -3, 2]);
 	hexagons.push([2, -3, 1]);
 	hexagons.push([3, -3, 0]);
@@ -68,7 +68,7 @@
 	hexagons.push([3, 0, -3]);
 	hexagons.push([2, 1, -3]);
 	hexagons.push([1, 2, -3]);
-	hexagons.push([0, 3, -3]);
+	hexagons.push([0, 3, -3]);  // The bottom
 	hexagons.push([-1, 3, -2]);
 	hexagons.push([-2, 3, -1]);
 	hexagons.push([-3, 3, 0]);
@@ -78,9 +78,9 @@
 	hexagons.push([-2, -1, 3]);
 	hexagons.push([-1, -2, 3]);
 	// The fourth layer
-	hexagons.push([0, -4, 4]);
-	hexagons.push([1, -4, 3]);
-	hexagons.push([2, -4, 2]);
+	// hexagons.push([0, -4, 4]);  // The top
+	hexagons.push([1, -4, 3]);  // next to the top
+	hexagons.push([2, -4, 2]);  // next to the top
 	hexagons.push([3, -4, 1]);
 	hexagons.push([4, -4, 0]);
 	hexagons.push([4, -3, -1]);
@@ -88,11 +88,11 @@
 	hexagons.push([4, -1, -3]);
 	hexagons.push([4, 0, -4]);
 	hexagons.push([3, 1, -4]);
-	hexagons.push([2, 2, -4]);
-	hexagons.push([1, 3, -4]);
-	hexagons.push([0, 4, -4]);
-	hexagons.push([-1, 4, -3]);
-	hexagons.push([-2, 4, -2]);
+	hexagons.push([2, 2, -4]);  // next to the bottom
+	hexagons.push([1, 3, -4]);  // next to the bottom
+	// hexagons.push([0, 4, -4]);  // The bottom
+	hexagons.push([-1, 4, -3]);  // next to the bottom
+	hexagons.push([-2, 4, -2]);  // next to the bottom
 	hexagons.push([-3, 4, -1]);
 	hexagons.push([-4, 4, 0]);
 	hexagons.push([-4, 3, 1]);
@@ -100,12 +100,12 @@
 	hexagons.push([-4, 1, 3]);
 	hexagons.push([-4, 0, 4]);
 	hexagons.push([-3, -1, 4]);
-	hexagons.push([-2, -2, 4]);
-	hexagons.push([-1, -3, 4]);
-	// The fifth layer
-	hexagons.push([0, -5, 5]);
-	hexagons.push([1, -5, 4]);
-	hexagons.push([2, -5, 3]);
+	hexagons.push([-2, -2, 4]);  // next to the top
+	hexagons.push([-1, -3, 4]);  // next to the top
+	// // The fifth layer
+	// hexagons.push([0, -5, 5]);
+	// hexagons.push([1, -5, 4]);
+	// hexagons.push([2, -5, 3]);
 	hexagons.push([3, -5, 2]);
 	hexagons.push([4, -5, 1]);
 	hexagons.push([5, -5, 0]);
@@ -116,11 +116,11 @@
 	hexagons.push([5, 0, -5]);
 	hexagons.push([4, 1, -5]);
 	hexagons.push([3, 2, -5]);
-	hexagons.push([2, 3, -5]);
-	hexagons.push([1, 4, -5]);
-	hexagons.push([0, 5, -5]);
-	hexagons.push([-1, 5, -4]);
-	hexagons.push([-2, 5, -3]);
+	// hexagons.push([2, 3, -5]);
+	// hexagons.push([1, 4, -5]);
+	// hexagons.push([0, 5, -5]);
+	// hexagons.push([-1, 5, -4]);
+	// hexagons.push([-2, 5, -3]);
 	hexagons.push([-3, 5, -2]);
 	hexagons.push([-4, 5, -1]);
 	hexagons.push([-5, 5, 0]);
@@ -131,14 +131,14 @@
 	hexagons.push([-5, 0, 5]);
 	hexagons.push([-4, -1, 5]);
 	hexagons.push([-3, -2, 5]);
-	hexagons.push([-2, -3, 5]);
-	hexagons.push([-1, -4, 5]);
-	// The sixth layer
-	hexagons.push([0, -6, 6]);
-	hexagons.push([1, -6, 5]);
-	hexagons.push([2, -6, 4]);
-	hexagons.push([3, -6, 3]);
-	hexagons.push([4, -6, 2]);
+	// hexagons.push([-2, -3, 5]);
+	// hexagons.push([-1, -4, 5]);
+	// // The sixth layer
+	// hexagons.push([0, -6, 6]);
+	// hexagons.push([1, -6, 5]);
+	// hexagons.push([2, -6, 4]);
+	// hexagons.push([3, -6, 3]);
+	// hexagons.push([4, -6, 2]);
 	hexagons.push([5, -6, 1]);
 	hexagons.push([6, -6, 0]);
 	hexagons.push([6, -5, -1]);
@@ -148,15 +148,15 @@
 	hexagons.push([6, -1, -5]);
 	hexagons.push([6, 0, -6]);
 	hexagons.push([5, 1, -6]);
-	hexagons.push([4, 2, -6]);
-	hexagons.push([3, 3, -6]);
-	hexagons.push([2, 4, -6]);
-	hexagons.push([1, 5, -6]);
-	hexagons.push([0, 6, -6]);
-	hexagons.push([-1, 6, -5]);
-	hexagons.push([-2, 6, -4]);
-	hexagons.push([-3, 6, -3]);
-	hexagons.push([-4, 6, -2]);
+	// hexagons.push([4, 2, -6]);
+	// hexagons.push([3, 3, -6]);
+	// hexagons.push([2, 4, -6]);
+	// hexagons.push([1, 5, -6]);
+	// hexagons.push([0, 6, -6]);
+	// hexagons.push([-1, 6, -5]);
+	// hexagons.push([-2, 6, -4]);
+	// hexagons.push([-3, 6, -3]);
+	// hexagons.push([-4, 6, -2]);
 	hexagons.push([-5, 6, -1]);
 	hexagons.push([-6, 6, 0]);
 	hexagons.push([-6, 5, 1]);
@@ -166,22 +166,22 @@
 	hexagons.push([-6, 1, 5]);
 	hexagons.push([-6, 0, 6]);
 	hexagons.push([-5, -1, 6]);
-	hexagons.push([-4, -2, 6]);
-	hexagons.push([-3, -3, 6]);
-	hexagons.push([-2, -4, 6]);
-	hexagons.push([-1, -5, 6]);
+	// hexagons.push([-4, -2, 6]);
+	// hexagons.push([-3, -3, 6]);
+	// hexagons.push([-2, -4, 6]);
+	// hexagons.push([-1, -5, 6]);
 
 </script>
-
-<main>
-	<!-- Width is {screenWidth}px  Height is {screenHeight}px -->
-	<div class="screen_box" bind:this={screenBox}></div>
-</main>
 
 {#each hexagons as hexagon, i}
 	<!-- hexagon -->
 	<Hexagon q={hexagon[0]} r={hexagon[1]} hexSize={hexSize} bind:this={hex[i]}></Hexagon>
 {/each}
+
+<main>
+	<!-- Width is {screenWidth}px  Height is {screenHeight}px -->
+	<div class="screen_box" bind:this={screenBox}></div>
+</main>
 
 <svelte:window on:wheel|nonpassive|preventDefault />
 
@@ -211,7 +211,7 @@
 		padding: 0;
 	}
 	.screen_box {
-		background-color: cadetblue;
+		background-color: midnightblue;
 		width: 100vw;
 		height: 100vh;
 	}
