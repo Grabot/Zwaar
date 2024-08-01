@@ -48,6 +48,7 @@
 
 	function handleClick(e) {
 		console.log("click event: " + e);
+		window.location.href="/terms";
 	}
 
 	export const updateHexagon = function(hexagonSize) {
@@ -108,7 +109,7 @@
 		stroke: aqua;
 		stroke-width: 5;
 		cursor: pointer;
-		fill: midnightblue;
+		fill: #131619;
 	}
 	#hex_button:hover {
 		cursor: pointer;

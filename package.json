@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public --no-clear"
+    "start": "sirv public -s --no-clear"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.0.0",
@@ -22,6 +22,7 @@
     "konva": "^9.3.13",
     "sirv-cli": "^2.0.0",
     "svelte-konva": "^0.3.1",
-    "svelte-resize-observer-action": "^0.0.4"
+    "svelte-resize-observer-action": "^0.0.4",
+    "svelte-routing": "^2.13.0"
   }
 }

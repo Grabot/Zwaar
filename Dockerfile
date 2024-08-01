@@ -1,4 +1,4 @@
-FROM node:14-alpine
+FROM node:22.5-alpine
 
 WORKDIR /app
 
@@ -7,7 +7,7 @@ RUN npm install
 RUN npm run build
 RUN npm prune --production # Remove dev dependencies
 
-EXPOSE 5000
+EXPOSE 32769
 ENV HOST=0.0.0.0
 
 CMD [ "npm", "start" ]
