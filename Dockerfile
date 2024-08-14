@@ -1,6 +1,6 @@
 FROM node:22.5-alpine
 
-WORKDIR /app
+WORKDIR /
 
 COPY . .
 RUN npm install

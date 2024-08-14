@@ -46,5 +46,16 @@ I may update our Privacy Policy from time to time. Thus, you are advised to revi
 This policy is effective as of 01-08-2024
 <h1>Contact Us</h1>
 If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact me at SanderKools@zwaar.dev, or message "Sander 🥰" at Brocast.
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <style></style>

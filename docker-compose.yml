@@ -1,13 +1,13 @@
 version: '3.3'
 services:
   zwaar_app:
-    image: node:14-alpine
+    image: node:22.5-alpine
     volumes:
       - type: bind
         source: ./
         target: /app
     working_dir: /app
-    command: npm run dev
+    command: npm start
     ports:
       - "32769:32769"
     environment:

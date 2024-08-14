@@ -1,10 +1,17 @@
 <script>
 	import { onMount } from "svelte";
 
-	export let q;
-	export let r;
 	export let colourIntensity;
 	export let hexSize;
+	export let hexImage;
+	export let logoHex;
+	export let toggle = () => {} // called in parent
+	export let onClick = () => {} // called in parent
+
+	var className = "hex_polygon"
+	if (logoHex) {
+		className = "hex_polygon_logo"
+	}
 
 	// Size of the hexagon and the internal dimensions of the svg viewBox. 
 	let xSize = 2 * hexSize;
@@ -13,15 +20,6 @@
 	const sidesOfHexagon = 6;
 	let radius = xSize/2;
     const angle = (Math.PI * 2) / sidesOfHexagon;
-
-	let pos_x = 0;
-	let pos_y = 0;
-	function getTilePos() {
-		pos_x = xSize * 3 / 4 * q;
-		const yTr1 = ySize / 2 * q;
-		const yTr2 = ySize * r;
-		pos_y = yTr1 + yTr2;
-	}
 
 	// These hexagon points will be the same for all hexagons within their own viewbox dimensions.
 	var points = [];
@@ -45,34 +43,30 @@
 		}
 	}
 	setHexagonDetails();
-	getTilePos();
-
-	function handleClick(e) {
-		console.log("click event: " + e);
-		// window.location.href="/terms";
-	}
 
 	export const updateHexagon = function(hexagonSize) {
         // console.log("updateHexagon: " + hexagonSize);
-		hexSize = hexagonSize;
+		hexSize = hexagonSize + 0.3;
 		setHexagonDetails();
-		getTilePos();
     }
 
 	onMount(() => {
-		const interval = setInterval(() => {
-			hexagonColour = rgbToHex(
-				// 20,
-				// 20,
-				Math.round(Math.random() * colourIntensity),
-				Math.round(Math.random() * colourIntensity),
-				Math.round(Math.random() * colourIntensity)
-			);
-		}, Math.round(200 + Math.random() * 1000));
+		if (!logoHex) {
+			// Change the colour every now and then, but not if this hex is part of the logo
+			const interval = setInterval(() => {
+				hexagonColour = rgbToHex(
+					// 20,
+					// 20,
+					Math.round(Math.random() * colourIntensity),
+					Math.round(Math.random() * colourIntensity),
+					Math.round(Math.random() * colourIntensity)
+				);
+			}, Math.round(200 + Math.random() * 1000));
 
-		return () => {
-			clearInterval(interval);
-		};
+			return () => {
+				clearInterval(interval);
+			};
+		}
 	});
 
 	function componentToHex(c) {
@@ -84,9 +78,31 @@
 		return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
 	}
 
+	var resetHexHover = function(){
+		const testElements = document.getElementsByClassName("hex_polygon_logo");
+		for (var i = 0; i < testElements.length; i++) {
+			var testElement = testElements[i];
+			testElement.style.transition = "fill 0.5s ease-in-out";
+			testElement.style.fill = "var(--hex-colour)";
+		}
+	}
+
+	export const updateHexagonColourHover = function(hexColour) {
+		const testElements = document.getElementsByClassName("hex_polygon_logo");
+	
+		for (var i = 0; i < testElements.length; i++) {
+			var testElement = testElements[i];
+			testElement.style.transition = "fill 0s";
+			testElement.style.fill = "#F00";
+			setTimeout(resetHexHover, 250);
+		}
+	}
+
+	export const updateHexagonColour = function(hexColour) {
+		hexagonColour = hexColour;
+    }
+
 	var hexagonColour = rgbToHex(
-		// 20,
-		// 20,
 		Math.round(Math.random() * colourIntensity),
 		Math.round(Math.random() * colourIntensity),
 		Math.round(Math.random() * colourIntensity)
@@ -94,42 +110,28 @@
 
 </script>
 
-<div class="hex_item" style='--pos_x:{pos_x};--pos_y:{pos_y};'>
-    <svg id="hex_svg" class="svg_style" width={xSize} height={ySize} viewBox="0 0 {xSize} {ySize}">
-        <g id=hex_button on:click={handleClick} on:keydown={handleClick}>
-            <polygon style="--hex-colour: {hexagonColour}" class="hex_polygon" points="
-                                            {points[0][0]},{points[0][1]}
-                                            {points[1][0]},{points[1][1]}
-                                            {points[2][0]},{points[2][1]}
-                                            {points[3][0]},{points[3][1]}
-                                            {points[4][0]},{points[4][1]}
-                                            {points[5][0]},{points[5][1]}">
-            </polygon>
-            <!-- We add an image to the svg. We have a placeholder image and we set the height to half of the svg viewbox
-                We position the x and y start of the image 1/4 of the width and height, 
-                which will position the center of the image in the center of the svg. -->
-            <!-- <image href="https://via.placeholder.com/100" height="{ySize/2}" width="{xSize/2}" x="{xSize/4}" y="{ySize/4}"/> -->
-        </g>
-    </svg>
-</div>
+<svg id="hex_svg" class="svg_style" width={xSize} height={ySize} viewBox="0 0 {xSize} {ySize}">
+    <g id=hex_button on:click={onClick} on:keydown={onClick}>
+        <polygon style="--hex-colour: {hexagonColour};" class={className} 
+		on:mouseenter={toggle}
+		points="
+			{points[0][0]},{points[0][1]}
+			{points[1][0]},{points[1][1]}
+			{points[2][0]},{points[2][1]}
+			{points[3][0]},{points[3][1]}
+			{points[4][0]},{points[4][1]}
+			{points[5][0]},{points[5][1]}">
+        </polygon>
+        <!-- We add an image to the svg. We have a placeholder image and we set the height to half of the svg viewbox
+            We position the x and y start of the image 1/4 of the width and height, 
+            which will position the center of the image in the center of the svg. -->
+		{#if hexImage != null}
+			<image href="{hexImage}" height="{ySize/2}" width="{xSize/2}" x="{xSize/4}" y="{ySize/4}"/>
+		{/if}
+    </g>
+</svg>
 
 <style>
-	.hex_item {
-		pointer-events: None;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: 
-			translate(
-				-50%,
-				-50%
-				)
-			translate(
-				calc( var(--pos_x) * 1px ),
-				calc( var(--pos_y) * 1px )
-				);
-	}
-
 	.svg_style {
 		pointer-events: None;
 	}
@@ -146,6 +148,12 @@
 		cursor: pointer;
 		fill: #F00;
 		transition: fill 0s;
+	}
+
+	.hex_polygon_logo {
+		pointer-events: auto;
+		transition: fill 0.5s ease-in-out;
+		fill: var(--hex-colour);
 	}
 
 	#hex_button {

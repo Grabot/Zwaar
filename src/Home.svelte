@@ -1,7 +1,8 @@
 <script>
 	import { onMount } from "svelte";
-    import Hexagon from "./Hexagon.svelte";
+    import RegularHexagon from "./RegularHexagon.svelte";
 	import BroCastHex from "./BroCastHex.svelte";
+    import ZwaarLogo from "./ZwaarLogo.svelte";
 
 	// A box and corresponding width and height value of the box.
 	// The box is set to the full screen width and height 
@@ -33,6 +34,7 @@
 			}
 			for (let i = 0; i <= hex.length - 1; i++) {
 				hex[i].updateHexagon(hexSize);
+				zwaarLogo.updateHexagon(hexSize);
 			}
 		});
 		resizeObserver.observe(screenBox);
@@ -44,14 +46,14 @@
 	// We will use the q, r, s coordinates system even though just q, r should be sufficient.
 	// It should hold for all hexagons that q + r + s == 0
 	// The center hexagon
-	hexagons.push([0, 0, 0, "brocast"]);
+	hexagons.push([0, 0, 0, ""]);
 	// The first layer (6 neighbours of the center)
 	hexagons.push([0, -1, 1, ""]);
 	hexagons.push([1, -1, 0, ""]);
-	hexagons.push([1, 0, -1, ""]);
+	hexagons.push([1, 0, -1, "brocast"]);
 	hexagons.push([0, 1, -1, ""]);
 	hexagons.push([-1, 1, 0, ""]);
-	hexagons.push([-1, 0, 1, ""]);
+	// hexagons.push([-1, 0, 1, ""]);
 	// The second layer
 	hexagons.push([0, -2, 2, ""]);
 	hexagons.push([1, -2, 1, ""]);
@@ -62,9 +64,9 @@
 	hexagons.push([0, 2, -2, ""]);
 	hexagons.push([-1, 2, -1, ""]);
 	hexagons.push([-2, 2, 0, ""]);
-	hexagons.push([-2, 1, 1, ""]);
-	hexagons.push([-2, 0, 2, ""]);
-	hexagons.push([-1, -1, 2, ""]);
+	// hexagons.push([-2, 1, 1, ""]);
+	// hexagons.push([-2, 0, 2, ""]);   // part of the zwaar logo
+	// hexagons.push([-1, -1, 2, ""]);  // part of the zwaar logo
 	// The third layer
 	hexagons.push([0, -3, 3, ""]);  // The top
 	hexagons.push([1, -3, 2, ""]);
@@ -80,9 +82,9 @@
 	hexagons.push([-2, 3, -1, ""]);
 	hexagons.push([-3, 3, 0, ""]);
 	hexagons.push([-3, 2, 1, ""]);
-	hexagons.push([-3, 1, 2, ""]);
-	hexagons.push([-3, 0, 3, ""]);
-	hexagons.push([-2, -1, 3, ""]);
+	// hexagons.push([-3, 1, 2, ""]);
+	// hexagons.push([-3, 0, 3, ""]);
+	// hexagons.push([-2, -1, 3, ""]);
 	hexagons.push([-1, -2, 3, ""]);
 	// The fourth layer
 	hexagons.push([0, -4, 4, ""]);  // The top
@@ -221,16 +223,18 @@
 	hexagons.push([-2, -5, 7, ""]);
 	hexagons.push([-1, -6, 7, ""]);
 
-	let colourIntensity = 50;
+	let colourIntensity = 30;
+	let zwaarLogo;
 </script>
 
 {#each hexagons as hexagon, i}
 	{#if hexagon[3] == "brocast"}
 		<BroCastHex q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></BroCastHex>
 	{:else}
-		<Hexagon q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></Hexagon>
+		<RegularHexagon q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></RegularHexagon>
 	{/if}
 {/each}
+<ZwaarLogo colourIntensity={colourIntensity} hexSize={hexSize} bind:this={zwaarLogo}></ZwaarLogo>
 
 <div class="intensity_slider">
 	<p class="intensity_slider_text">Colour intensity: {colourIntensity}px</p>
