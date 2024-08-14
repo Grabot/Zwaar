@@ -181,25 +181,25 @@
 </script>
 
 <div class="hex_item" style='--pos_x:{pos_x_center};--pos_y:{pos_y_center};'>
-    <Hexagon colourIntensity={zwaarIntensity} hexSize={hexSize} hexImage={hexImage} bind:this={hexTileCenter} logoHex={true} toggle={parentToggle} onClick={handleClick}></Hexagon>
+    <Hexagon colourIntensity={zwaarIntensity} hexSize={hexSize} hexImage={hexImage} hexTileText={""} bind:this={hexTileCenter} logoHex={true} toggle={parentToggle} onClick={handleClick}></Hexagon>
 </div>
 <div class="hex_item" style='--pos_x:{pos_x_side1};--pos_y:{pos_y_side1};'>
-    <Hexagon colourIntensity={zwaarIntensity} hexSize={hexSize} hexImage={hexImage} bind:this={hexTileSide1} logoHex={true} toggle={parentToggle} onClick={handleClick}></Hexagon>
+    <Hexagon colourIntensity={zwaarIntensity} hexSize={hexSize} hexImage={hexImage} hexTileText={""} bind:this={hexTileSide1} logoHex={true} toggle={parentToggle} onClick={handleClick}></Hexagon>
 </div>
 <div class="hex_item" style='--pos_x:{pos_x_side2};--pos_y:{pos_y_side2};'>
-    <Hexagon colourIntensity={zwaarIntensity} hexSize={hexSize} hexImage={hexImage} bind:this={hexTileSide2} logoHex={true} toggle={parentToggle} onClick={handleClick}></Hexagon>
+    <Hexagon colourIntensity={zwaarIntensity} hexSize={hexSize} hexImage={hexImage} hexTileText={""} bind:this={hexTileSide2} logoHex={true} toggle={parentToggle} onClick={handleClick}></Hexagon>
 </div>
 <div class="hex_item" style='--pos_x:{pos_x_side3};--pos_y:{pos_y_side3};'>
-    <Hexagon colourIntensity={zwaarIntensity} hexSize={hexSize} hexImage={hexImage} bind:this={hexTileSide3} logoHex={true} toggle={parentToggle} onClick={handleClick}></Hexagon>
+    <Hexagon colourIntensity={zwaarIntensity} hexSize={hexSize} hexImage={hexImage} hexTileText={""} bind:this={hexTileSide3} logoHex={true} toggle={parentToggle} onClick={handleClick}></Hexagon>
 </div>
 <div class="hex_item" style='--pos_x:{pos_x_side4};--pos_y:{pos_y_side4};'>
-    <Hexagon colourIntensity={zwaarIntensity} hexSize={hexSize} hexImage={hexImage} bind:this={hexTileSide4} logoHex={true} toggle={parentToggle} onClick={handleClick}></Hexagon>
+    <Hexagon colourIntensity={zwaarIntensity} hexSize={hexSize} hexImage={hexImage} hexTileText={""} bind:this={hexTileSide4} logoHex={true} toggle={parentToggle} onClick={handleClick}></Hexagon>
 </div>
 <div class="hex_item" style='--pos_x:{pos_x_side5};--pos_y:{pos_y_side5};'>
-    <Hexagon colourIntensity={zwaarIntensity} hexSize={hexSize} hexImage={hexImage} bind:this={hexTileSide5} logoHex={true} toggle={parentToggle} onClick={handleClick}></Hexagon>
+    <Hexagon colourIntensity={zwaarIntensity} hexSize={hexSize} hexImage={hexImage} hexTileText={""} bind:this={hexTileSide5} logoHex={true} toggle={parentToggle} onClick={handleClick}></Hexagon>
 </div>
 <div class="hex_item" style='--pos_x:{pos_x_side6};--pos_y:{pos_y_side6};'>
-    <Hexagon colourIntensity={zwaarIntensity} hexSize={hexSize} hexImage={hexImage} bind:this={hexTileSide6} logoHex={true} toggle={parentToggle} onClick={handleClick}></Hexagon>
+    <Hexagon colourIntensity={zwaarIntensity} hexSize={hexSize} hexImage={hexImage} hexTileText={""} bind:this={hexTileSide6} logoHex={true} toggle={parentToggle} onClick={handleClick}></Hexagon>
 </div>
 
 <div class="logo_text" style='--pos_x:{pos_x_text_zwaar};--pos_y:{pos_y_text_zwaar};'>

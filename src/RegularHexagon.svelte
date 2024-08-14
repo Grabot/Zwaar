@@ -51,7 +51,7 @@
 </script>
 
 <div class="hex_item" style='--pos_x:{pos_x};--pos_y:{pos_y};'>
-    <Hexagon colourIntensity={colourIntensity} hexSize={hexSize} hexImage={hexImage} bind:this={hexTile} logoHex={false} toggle={parentToggle} onClick={handleClick}></Hexagon>
+    <Hexagon colourIntensity={colourIntensity} hexSize={hexSize} hexImage={hexImage} hexTileText={""} bind:this={hexTile} logoHex={false} toggle={parentToggle} onClick={handleClick}></Hexagon>
 </div>
 
 <style>

@@ -4,6 +4,7 @@
 	export let colourIntensity;
 	export let hexSize;
 	export let hexImage;
+	export let hexTileText;
 	export let logoHex;
 	export let toggle = () => {} // called in parent
 	export let onClick = () => {} // called in parent
@@ -125,9 +126,13 @@
         <!-- We add an image to the svg. We have a placeholder image and we set the height to half of the svg viewbox
             We position the x and y start of the image 1/4 of the width and height, 
             which will position the center of the image in the center of the svg. -->
-		{#if hexImage != null}
-			<image href="{hexImage}" height="{ySize/2}" width="{xSize/2}" x="{xSize/4}" y="{ySize/4}"/>
+
+		{#if hexTileText != ""}
+			<text fill="#F00" x="0" y="40" font-size="48" font-family="Verdana">{hexTileText}</text>
 		{/if}
+		<!-- {#if hexImage != null}
+			<image href="{hexImage}" height="{ySize/2}" width="{xSize/2}" x="{xSize/4}" y="{ySize/4}"/>
+		{/if} -->
     </g>
 </svg>
 

@@ -237,11 +237,11 @@
 <ZwaarLogo colourIntensity={colourIntensity} hexSize={hexSize} bind:this={zwaarLogo}></ZwaarLogo>
 
 <div class="intensity_slider">
-	<p class="intensity_slider_text">Colour intensity: {colourIntensity}px</p>
+	<p class="intensity_slider_text">Colour intensity: {colourIntensity}</p>
 	<input bind:value={colourIntensity} type="range" min="0" max="255" />
 </div>
 
-<main>
+<main class:scroll-lock={false}>
 	<!-- Width is {screenWidth}px  Height is {screenHeight}px -->
 	<div class="screen_box" bind:this={screenBox}></div>
 </main>
@@ -289,6 +289,7 @@
 		padding: 0;
         color: #f7f8f9;
 		background-color: #131619;
+		touch-action: none;
 	}
 	.screen_box {
 		background-color: #131619;
