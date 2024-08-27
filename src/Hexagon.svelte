@@ -128,11 +128,11 @@
             which will position the center of the image in the center of the svg. -->
 
 		{#if hexTileText != ""}
-			<text fill="#F00" x="0" y="40" font-size="48" font-family="Verdana">{hexTileText}</text>
+			<text class="hex_text" x="{xSize/4}" y="{(ySize/5)*4}" font-size="{xSize/8}" font-family="Verdana">{hexTileText}</text>
 		{/if}
-		<!-- {#if hexImage != null}
-			<image href="{hexImage}" height="{ySize/2}" width="{xSize/2}" x="{xSize/4}" y="{ySize/4}"/>
-		{/if} -->
+		{#if hexImage != null}
+			<image href="{hexImage}" height="{ySize/2}" width="{xSize/2}" x="{xSize/4}" y="{(ySize/4)-10}"/>
+		{/if}
     </g>
 </svg>
 
@@ -164,4 +164,13 @@
 	#hex_button {
 		pointer-events: None;
 	}
+
+	.hex_text {
+		fill: #FFF;
+		filter: drop-shadow( 1px  0px 0px black) 
+				drop-shadow(-1px  0px 0px black)
+				drop-shadow( 0px  1px 0px black) 
+				drop-shadow( 0px -1px 0px black);
+	}
+
 </style>

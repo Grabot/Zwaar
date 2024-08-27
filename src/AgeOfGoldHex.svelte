@@ -11,7 +11,7 @@
 	var hexTile;
 	// var hexImage = "/images/brocast_transparent.png";
 	var hexImage = "http://zwaar.dev/images/brocast_transparent.png";
-	var hexTileText = "Brocast";
+	var hexTileText = "Age of Gold";
 
 	// Size of the hexagon and the internal dimensions of the svg viewBox. 
 	let xSize = 2 * hexSize;
@@ -52,7 +52,7 @@
 </script>
 
 <div class="hex_item" style='--pos_x:{pos_x};--pos_y:{pos_y};'>
-    <Hexagon colourIntensity={brocastIntensity} hexSize={hexSize} hexImage={hexImage} hexTileText={hexTileText} bind:this={hexTile} logoHex={false} toggle={parentToggle} onClick={handleClick}></Hexagon>
+    <Hexagon colourIntensity={brocastIntensity} hexSize={hexSize} hexImage={hexImage} hexTileText={"Age of Gold"} bind:this={hexTile} logoHex={false} toggle={parentToggle} onClick={handleClick}></Hexagon>
 </div>
 
 <style>

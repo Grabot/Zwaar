@@ -5,6 +5,7 @@
     import Privacy from "./Privacy.svelte";
     import Art from "./Art.svelte";
     import Team from "./Team.svelte";
+    import Contact from "./Contact.svelte";
 
 	export let url = "";
 </script>
@@ -18,6 +19,7 @@
 			<Link to="/art"></Link>
 			<Link to="/terms"></Link>
 			<Link to="/privacy"></Link>
+			<Link to="/contact"></Link>
 		</nav>
 		
 		<div>
@@ -26,6 +28,7 @@
 			<Route path="/art" component="{Art}" />
 			<Route path="/terms" component="{Terms}" />
 			<Route path="/privacy" component="{Privacy}" />
+			<Route path="/contact" component="{Contact}" />
 		</div>
 	</Router>
 </div>

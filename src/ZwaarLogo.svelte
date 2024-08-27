@@ -97,9 +97,9 @@
 		pos_y_side6 = yTr1 + yTr2;
 
         pos_x_text_zwaar = pos_x_center;
-        pos_y_text_zwaar = pos_y_center - 50;
+        pos_y_text_zwaar = pos_y_center - (hexSize/2);
         pos_x_text_dev = pos_x_center;
-        pos_y_text_dev = pos_y_center + 50;
+        pos_y_text_dev = pos_y_center + (hexSize/2);
 	}
 	setHexagonDetails();
 	getTilePos();

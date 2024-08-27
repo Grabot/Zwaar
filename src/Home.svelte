@@ -3,6 +3,10 @@
     import RegularHexagon from "./RegularHexagon.svelte";
 	import BroCastHex from "./BroCastHex.svelte";
     import ZwaarLogo from "./ZwaarLogo.svelte";
+    import AgeOfGoldHex from "./AgeOfGoldHex.svelte";
+    import TeamHex from "./TeamHex.svelte";
+    import GithubHex from "./GithubHex.svelte";
+    import ContactHex from "./ContactHex.svelte";
 
 	// A box and corresponding width and height value of the box.
 	// The box is set to the full screen width and height 
@@ -57,11 +61,11 @@
 	// The second layer
 	hexagons.push([0, -2, 2, ""]);
 	hexagons.push([1, -2, 1, ""]);
-	hexagons.push([2, -2, 0, ""]);
+	hexagons.push([2, -2, 0, "team"]);
 	hexagons.push([2, -1, -1, ""]);
 	hexagons.push([2, 0, -2, ""]);
 	hexagons.push([1, 1, -2, ""]);
-	hexagons.push([0, 2, -2, ""]);
+	hexagons.push([0, 2, -2, "contact"]);
 	hexagons.push([-1, 2, -1, ""]);
 	hexagons.push([-2, 2, 0, ""]);
 	// hexagons.push([-2, 1, 1, ""]);
@@ -80,7 +84,7 @@
 	hexagons.push([0, 3, -3, ""]);  // The bottom
 	hexagons.push([-1, 3, -2, ""]);
 	hexagons.push([-2, 3, -1, ""]);
-	hexagons.push([-3, 3, 0, ""]);
+	hexagons.push([-3, 3, 0, "age of gold"]);
 	hexagons.push([-3, 2, 1, ""]);
 	// hexagons.push([-3, 1, 2, ""]);
 	// hexagons.push([-3, 0, 3, ""]);
@@ -96,7 +100,7 @@
 	hexagons.push([4, -2, -2, ""]);
 	hexagons.push([4, -1, -3, ""]);
 	hexagons.push([4, 0, -4, ""]);
-	hexagons.push([3, 1, -4, ""]);
+	hexagons.push([3, 1, -4, "github"]);
 	hexagons.push([2, 2, -4, ""]);  // next to the bottom
 	hexagons.push([1, 3, -4, ""]);  // next to the bottom
 	hexagons.push([0, 4, -4, ""]);  // The bottom
@@ -230,6 +234,14 @@
 {#each hexagons as hexagon, i}
 	{#if hexagon[3] == "brocast"}
 		<BroCastHex q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></BroCastHex>
+	{:else if hexagon[3] == "team"}
+		<TeamHex q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></TeamHex>
+	{:else if hexagon[3] == "age of gold"}
+		<AgeOfGoldHex q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></AgeOfGoldHex>
+	{:else if hexagon[3] == "github"}
+		<GithubHex q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></GithubHex>
+	{:else if hexagon[3] == "contact"}
+		<ContactHex q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></ContactHex>
 	{:else}
 		<RegularHexagon q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></RegularHexagon>
 	{/if}
