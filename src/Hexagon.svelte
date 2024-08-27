@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from "svelte";
 
-	export let colourIntensity;
+	export let hexagonData
 	export let hexSize;
 	export let hexImage;
 	export let hexTileText;
@@ -58,9 +58,9 @@
 				hexagonColour = rgbToHex(
 					// 20,
 					// 20,
-					Math.round(Math.random() * colourIntensity),
-					Math.round(Math.random() * colourIntensity),
-					Math.round(Math.random() * colourIntensity)
+					Math.round(Math.random() * hexagonData["colourIntensity"]),
+					Math.round(Math.random() * hexagonData["colourIntensity"]),
+					Math.round(Math.random() * hexagonData["colourIntensity"])
 				);
 			}, Math.round(200 + Math.random() * 1000));
 
@@ -104,9 +104,9 @@
     }
 
 	var hexagonColour = rgbToHex(
-		Math.round(Math.random() * colourIntensity),
-		Math.round(Math.random() * colourIntensity),
-		Math.round(Math.random() * colourIntensity)
+		Math.round(Math.random() * hexagonData["colourIntensity"]),
+		Math.round(Math.random() * hexagonData["colourIntensity"]),
+		Math.round(Math.random() * hexagonData["colourIntensity"])
 	);
 
 </script>

@@ -7,7 +7,7 @@
 	export let colourIntensity;
 	export let hexSize;
 
-	var brocastIntensity = colourIntensity;
+	var ageOfGoldIntensity = colourIntensity;
 	var hexTile;
 	// var hexImage = "/images/brocast_transparent.png";
 	var hexImage = "http://zwaar.dev/images/brocast_transparent.png";
@@ -49,10 +49,17 @@
 
     function parentToggle() { }
 
+	var hexagonData = {
+		"hexSize": hexSize,
+		"colourIntensity": ageOfGoldIntensity,
+		"hexImage": hexImage,
+		"hexTileText": hexTileText,
+		"hexFontSize": hexSize/4
+	};
 </script>
 
 <div class="hex_item" style='--pos_x:{pos_x};--pos_y:{pos_y};'>
-    <Hexagon colourIntensity={brocastIntensity} hexSize={hexSize} hexImage={hexImage} hexTileText={"Age of Gold"} bind:this={hexTile} logoHex={false} toggle={parentToggle} onClick={handleClick}></Hexagon>
+    <Hexagon hexagonData={hexagonData} colourIntensity={ageOfGoldIntensity} hexSize={hexSize} hexImage={hexImage} hexTileText={"Age of Gold"} bind:this={hexTile} logoHex={false} toggle={parentToggle} onClick={handleClick}></Hexagon>
 </div>
 
 <style>

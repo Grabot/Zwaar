@@ -7,7 +7,7 @@
 	export let colourIntensity;
 	export let hexSize;
 
-	var teamIntensity = colourIntensity;
+	var contactIntensity = colourIntensity;
 	var hexTile;
 	var hexImage = "http://zwaar.dev/images/brocast_transparent.png";
 	var hexTileText = "Contact";
@@ -48,10 +48,17 @@
 
     function parentToggle() { }
 
+	var hexagonData = {
+		"hexSize": hexSize,
+		"colourIntensity": contactIntensity,
+		"hexImage": hexImage,
+		"hexTileText": hexTileText,
+		"hexFontSize": hexSize/4
+	};
 </script>
 
 <div class="hex_item" style='--pos_x:{pos_x};--pos_y:{pos_y};'>
-    <Hexagon colourIntensity={teamIntensity} hexSize={hexSize} hexImage={hexImage} hexTileText={hexTileText} bind:this={hexTile} logoHex={false} toggle={parentToggle} onClick={handleClick}></Hexagon>
+    <Hexagon hexagonData={hexagonData} hexSize={hexSize} hexImage={hexImage} hexTileText={hexTileText} bind:this={hexTile} logoHex={false} toggle={parentToggle} onClick={handleClick}></Hexagon>
 </div>
 
 <style>
