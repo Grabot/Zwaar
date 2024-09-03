@@ -49,17 +49,17 @@
 
     function parentToggle() { }
 
+	// data of the tile which will not change during runtime
 	var hexagonData = {
-		"hexSize": hexSize,
-		"colourIntensity": ageOfGoldIntensity,
 		"hexImage": hexImage,
 		"hexTileText": hexTileText,
-		"hexFontSize": hexSize/4
+		"logoHex": false,
+		"hexFontSizeRatio": 6  // the font size is based on the tile size and some ratio that's defined here.
 	};
 </script>
 
 <div class="hex_item" style='--pos_x:{pos_x};--pos_y:{pos_y};'>
-    <Hexagon hexagonData={hexagonData} colourIntensity={ageOfGoldIntensity} hexSize={hexSize} hexImage={hexImage} hexTileText={"Age of Gold"} bind:this={hexTile} logoHex={false} toggle={parentToggle} onClick={handleClick}></Hexagon>
+    <Hexagon hexagonData={hexagonData} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hexTile} toggle={parentToggle} onClick={handleClick}></Hexagon>
 </div>
 
 <style>

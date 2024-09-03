@@ -178,28 +178,32 @@
         hexTileSide6.updateHexagonColourHover("#F00");
     }
 
+	// data of the tile which will not change during runtime
+	var hexagonData = {
+		"logoHex": true
+	};
 </script>
 
 <div class="hex_item" style='--pos_x:{pos_x_center};--pos_y:{pos_y_center};'>
-    <Hexagon hexagonData="" hexSize={hexSize} hexImage={hexImage} hexTileText={""} bind:this={hexTileCenter} logoHex={true} toggle={parentToggle} onClick={handleClick}></Hexagon>
+    <Hexagon hexagonData={hexagonData} hexSize={hexSize} bind:this={hexTileCenter} toggle={parentToggle} onClick={handleClick}></Hexagon>
 </div>
 <div class="hex_item" style='--pos_x:{pos_x_side1};--pos_y:{pos_y_side1};'>
-    <Hexagon hexagonData="" hexSize={hexSize} hexImage={hexImage} hexTileText={""} bind:this={hexTileSide1} logoHex={true} toggle={parentToggle} onClick={handleClick}></Hexagon>
+    <Hexagon hexagonData={hexagonData} hexSize={hexSize} bind:this={hexTileSide1} toggle={parentToggle} onClick={handleClick}></Hexagon>
 </div>
 <div class="hex_item" style='--pos_x:{pos_x_side2};--pos_y:{pos_y_side2};'>
-    <Hexagon hexagonData="" hexSize={hexSize} hexImage={hexImage} hexTileText={""} bind:this={hexTileSide2} logoHex={true} toggle={parentToggle} onClick={handleClick}></Hexagon>
+    <Hexagon hexagonData={hexagonData} hexSize={hexSize} bind:this={hexTileSide2} toggle={parentToggle} onClick={handleClick}></Hexagon>
 </div>
 <div class="hex_item" style='--pos_x:{pos_x_side3};--pos_y:{pos_y_side3};'>
-    <Hexagon hexagonData="" hexSize={hexSize} hexImage={hexImage} hexTileText={""} bind:this={hexTileSide3} logoHex={true} toggle={parentToggle} onClick={handleClick}></Hexagon>
+    <Hexagon hexagonData={hexagonData} hexSize={hexSize} bind:this={hexTileSide3} toggle={parentToggle} onClick={handleClick}></Hexagon>
 </div>
 <div class="hex_item" style='--pos_x:{pos_x_side4};--pos_y:{pos_y_side4};'>
-    <Hexagon hexagonData="" hexSize={hexSize} hexImage={hexImage} hexTileText={""} bind:this={hexTileSide4} logoHex={true} toggle={parentToggle} onClick={handleClick}></Hexagon>
+    <Hexagon hexagonData={hexagonData} hexSize={hexSize} bind:this={hexTileSide4} toggle={parentToggle} onClick={handleClick}></Hexagon>
 </div>
 <div class="hex_item" style='--pos_x:{pos_x_side5};--pos_y:{pos_y_side5};'>
-    <Hexagon hexagonData="" hexSize={hexSize} hexImage={hexImage} hexTileText={""} bind:this={hexTileSide5} logoHex={true} toggle={parentToggle} onClick={handleClick}></Hexagon>
+    <Hexagon hexagonData={hexagonData} hexSize={hexSize} bind:this={hexTileSide5} toggle={parentToggle} onClick={handleClick}></Hexagon>
 </div>
 <div class="hex_item" style='--pos_x:{pos_x_side6};--pos_y:{pos_y_side6};'>
-    <Hexagon hexagonData="" hexSize={hexSize} hexImage={hexImage} hexTileText={""} bind:this={hexTileSide6} logoHex={true} toggle={parentToggle} onClick={handleClick}></Hexagon>
+    <Hexagon hexagonData={hexagonData} hexSize={hexSize} bind:this={hexTileSide6} toggle={parentToggle} onClick={handleClick}></Hexagon>
 </div>
 
 <div class="logo_text" style='--pos_x:{pos_x_text_zwaar};--pos_y:{pos_y_text_zwaar};'>

@@ -8,7 +8,6 @@
 	export let hexSize;
 
 	var hexTile;
-	var hexImage = null;
 
 	// Size of the hexagon and the internal dimensions of the svg viewBox. 
 	let xSize = 2 * hexSize;
@@ -48,10 +47,13 @@
 	}
 
     function parentToggle() { }
+
+	// data of the tile which will not change during runtime
+	var hexagonData = {};
 </script>
 
 <div class="hex_item" style='--pos_x:{pos_x};--pos_y:{pos_y};'>
-    <Hexagon hexagonData="" hexSize={hexSize} hexImage={hexImage} hexTileText={""} bind:this={hexTile} logoHex={false} toggle={parentToggle} onClick={handleClick}></Hexagon>
+    <Hexagon hexagonData={hexagonData} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hexTile} toggle={parentToggle} onClick={handleClick}></Hexagon>
 </div>
 
 <style>

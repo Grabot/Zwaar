@@ -2,12 +2,28 @@
 	import { onMount } from "svelte";
 
 	export let hexagonData
+	export let colourIntensity;
 	export let hexSize;
-	export let hexImage;
-	export let hexTileText;
-	export let logoHex;
 	export let toggle = () => {} // called in parent
 	export let onClick = () => {} // called in parent
+
+	var hexImage = null;
+	if ("hexImage" in hexagonData) {
+		hexImage = hexagonData["hexImage"];
+	}
+	var hexTileText = "";
+	if ("hexTileText" in hexagonData) {
+		hexTileText = hexagonData["hexTileText"];
+	}
+	var hexFontSizeRatio = 1;
+	if ("hexFontSizeRatio" in hexagonData) {
+		hexFontSizeRatio = hexagonData["hexFontSizeRatio"];
+	}
+	var hexFontSize = hexSize / hexFontSizeRatio;
+	var logoHex = false;
+	if ("logoHex" in hexagonData) {
+		logoHex = hexagonData["logoHex"];
+	}
 
 	var className = "hex_polygon"
 	if (logoHex) {
@@ -48,6 +64,7 @@
 	export const updateHexagon = function(hexagonSize) {
         // console.log("updateHexagon: " + hexagonSize);
 		hexSize = hexagonSize + 0.3;
+		hexFontSize = hexSize / hexFontSizeRatio;
 		setHexagonDetails();
     }
 
@@ -58,9 +75,9 @@
 				hexagonColour = rgbToHex(
 					// 20,
 					// 20,
-					Math.round(Math.random() * hexagonData["colourIntensity"]),
-					Math.round(Math.random() * hexagonData["colourIntensity"]),
-					Math.round(Math.random() * hexagonData["colourIntensity"])
+					Math.round(Math.random() * colourIntensity),
+					Math.round(Math.random() * colourIntensity),
+					Math.round(Math.random() * colourIntensity)
 				);
 			}, Math.round(200 + Math.random() * 1000));
 
@@ -104,17 +121,17 @@
     }
 
 	var hexagonColour = rgbToHex(
-		Math.round(Math.random() * hexagonData["colourIntensity"]),
-		Math.round(Math.random() * hexagonData["colourIntensity"]),
-		Math.round(Math.random() * hexagonData["colourIntensity"])
+		Math.round(Math.random() * colourIntensity),
+		Math.round(Math.random() * colourIntensity),
+		Math.round(Math.random() * colourIntensity)
 	);
 
 </script>
 
 <svg id="hex_svg" class="svg_style" width={xSize} height={ySize} viewBox="0 0 {xSize} {ySize}">
-    <g id=hex_button on:click={onClick} on:keydown={onClick}>
+    <g id=hex_button on:click={onClick} on:keydown={onClick} role="presentation">
         <polygon style="--hex-colour: {hexagonColour};" class={className} 
-		on:mouseenter={toggle}
+		on:mouseenter={toggle} role="presentation"
 		points="
 			{points[0][0]},{points[0][1]}
 			{points[1][0]},{points[1][1]}
@@ -128,7 +145,7 @@
             which will position the center of the image in the center of the svg. -->
 
 		{#if hexTileText != ""}
-			<text class="hex_text" x="{xSize/4}" y="{(ySize/5)*4}" font-size="{xSize/8}" font-family="Verdana">{hexTileText}</text>
+			<text class="hex_text" x="{xSize/4}" y="{(ySize/5)*4}" font-size="{hexFontSize}" font-family="Verdana">{hexTileText}</text>
 		{/if}
 		{#if hexImage != null}
 			<image href="{hexImage}" height="{ySize/2}" width="{xSize/2}" x="{xSize/4}" y="{(ySize/4)-10}"/>
