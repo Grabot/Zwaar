@@ -29,6 +29,7 @@
 	if (logoHex) {
 		className = "hex_polygon_logo"
 	}
+    let humanResourcesImage = "/images/HumanResources.png";
 
 	// Size of the hexagon and the internal dimensions of the svg viewBox. 
 	let xSize = 2 * hexSize;
@@ -148,7 +149,8 @@
 			<text class="hex_text" x="{xSize/4}" y="{(ySize/5)*4}" font-size="{hexFontSize}" font-family="Verdana">{hexTileText}</text>
 		{/if}
 		{#if hexImage != null}
-			<image href="{hexImage}" height="{ySize/2}" width="{xSize/2}" x="{xSize/4}" y="{(ySize/4)-10}"/>
+			<!-- <image href="{hexImage}" height="{ySize/2}" width="{xSize/2}" x="{xSize/4}" y="{(ySize/4)-10}"/> -->
+			<image height="{ySize/2}" width="{xSize/2}" x="{xSize/4}" y="{(ySize/4)-10}" href="data:image/jpeg;charset=utf-8;base64,{hexImage}"/>
 		{/if}
     </g>
 </svg>
@@ -190,4 +192,9 @@
 				drop-shadow( 0px -1px 0px black);
 	}
 
+    .image_temp {
+		overflow: hidden
+        /* height: 100%;
+        width: 100%; */
+    }
 </style>
