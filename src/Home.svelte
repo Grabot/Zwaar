@@ -9,6 +9,8 @@
     import ContactHex from "./ContactHex.svelte";
     import HexPlaceHex from "./HexPlaceHex.svelte";
 
+	let disabledScroll = false;
+
 	// A box and corresponding width and height value of the box.
 	// The box is set to the full screen width and height 
 	// and we observe the box for any changes in the size
@@ -20,19 +22,27 @@
 	// The hexagons list has the attributes for the Hexagons and the hex list will hold the objects.
 	let hexagons = [];
     let hex = [];
-	var normalMode = true;
+	let innerWidth = 0
+    let innerHeight = 0
+    $: normalMode = innerWidth*1.33 >= innerHeight;
+	var currentMode = normalMode;
 	onMount(() => {
+
+		// Adding global styling in the onMount.
+		// We do this to disable any and all scrolling on the main page while allowing regular actions on other pages
+		document.body.style.touchAction = "none";
+		document.body.style.overflow = "hidden";
+		document.body.style.height = "100%";
+
 		const resizeObserver = new ResizeObserver(entries => {
 			const entry = entries.at(0);
 
 			screenWidth = entry.contentRect.width;
 			screenHeight = entry.contentRect.height;
 
-			if (screenHeight > screenWidth) {
-				// the aspect ratio is most likely that of a vertical phone.
-				normalMode = false;
-			} else {
-				normalMode = true;
+			if (currentMode != normalMode) {
+				currentMode = normalMode;
+				setHexagons();
 			}
 
 			// The width of a single hexagon is 2 * hexSize but there is overlap
@@ -47,7 +57,9 @@
 			}
 			for (let i = 0; i <= hex.length - 1; i++) {
 				hex[i].updateHexagon(hexSize);
-				zwaarLogo.updateHexagon(hexSize);
+			}
+			if (zwaarLogo) {
+				zwaarLogo.updateHexagon(hexSize, normalMode);
 			}
 		});
 		resizeObserver.observe(screenBox);
@@ -55,6 +67,7 @@
 	});
 
 	function setHexagons() {
+		hexagons = [];
 		// Not the cleanest solution, but we will manually define all the hexagons that we want to display.
 		// This gives us full control to the final visual result.
 		// We will use the q, r, s coordinates system even though just q, r should be sufficient.
@@ -65,49 +78,40 @@
 		hexagons.push([0, -1, 1, ""]);
 		hexagons.push([1, -1, 0, ""]);
 		
-		if (normalMode) {
-			hexagons.push([1, 0, -1, "brocast"]);
-		} else {
-			hexagons.push([1, 0, -1, ""]);
-		}
+		hexagons.push([1, 0, -1, "brocast"]);
 		
 		hexagons.push([0, 1, -1, ""]);
-		hexagons.push([-1, 1, 0, ""]);
-		// hexagons.push([-1, 0, 1, ""]);
+		hexagons.push([-1, 1, 0, "age of gold"]);
+		
+		hexagons.push([-1, 0, 1, ""]);
 		// The second layer
 		hexagons.push([0, -2, 2, ""]);
 		hexagons.push([1, -2, 1, ""]);
 		
-		if (normalMode) {
-			hexagons.push([2, -2, 0, "team"]);
-		} else {
-			hexagons.push([2, -2, 0, ""]);
-		}
+		hexagons.push([2, -2, 0, "team"]);
 		
 		hexagons.push([2, -1, -1, ""]);
 		hexagons.push([2, 0, -2, ""]);
 		hexagons.push([1, 1, -2, ""]);
 		
-		if (normalMode) {
-			hexagons.push([0, 2, -2, "contact"]);
-		} else {
-			hexagons.push([0, 2, -2, ""]);
-		}
+		hexagons.push([0, 2, -2, "contact"]);
 		
 		hexagons.push([-1, 2, -1, ""]);
 		hexagons.push([-2, 2, 0, ""]);
-		// hexagons.push([-2, 1, 1, ""]);
-		// hexagons.push([-2, 0, 2, ""]);   // part of the zwaar logo
-		// hexagons.push([-1, -1, 2, ""]);  // part of the zwaar logo
+		
+		hexagons.push([-2, 1, 1, ""]);
+		hexagons.push([-2, 0, 2, ""]);   // part of the zwaar logo in normalMode
+		hexagons.push([-1, -1, 2, ""]);  // part of the zwaar logo in normalMode
+			
 		// The third layer
 		hexagons.push([0, -3, 3, ""]);  // The top
 		hexagons.push([1, -3, 2, ""]);
-		hexagons.push([2, -3, 1, ""]);
+		hexagons.push([2, -3, 1, "github"]);
 		hexagons.push([3, -3, 0, ""]);
 		hexagons.push([3, -2, -1, ""]);
 
 		if (normalMode) {
-			hexagons.push([3, -1, -2, "hex place"]);
+			hexagons.push([3, -1, -2, ""]);
 		} else {
 			hexagons.push([3, -1, -2, ""]);
 		}
@@ -117,18 +121,21 @@
 		hexagons.push([1, 2, -3, ""]);
 		hexagons.push([0, 3, -3, ""]);  // The bottom
 		hexagons.push([-1, 3, -2, ""]);
-		hexagons.push([-2, 3, -1, ""]);
 
-		if (normalMode) {
-			hexagons.push([-3, 3, 0, "age of gold"]);
-		} else {
-			hexagons.push([-3, 3, 0, ""]);
-		}
+		hexagons.push([-2, 3, -1, "hex place"]);
+
+		hexagons.push([-3, 3, 0, ""]);
 		
 		hexagons.push([-3, 2, 1, ""]);
-		// hexagons.push([-3, 1, 2, ""]);
-		// hexagons.push([-3, 0, 3, ""]);
-		// hexagons.push([-2, -1, 3, ""]);
+		if (normalMode) {
+			hexagons.push([-3, 1, 2, ""]);
+			hexagons.push([-3, 0, 3, ""]);
+			hexagons.push([-2, -1, 3, ""]);
+		} else {
+			hexagons.push([-3, 1, 2, ""]);
+			hexagons.push([-3, 0, 3, ""]);
+			hexagons.push([-2, -1, 3, ""]);
+		}
 		hexagons.push([-1, -2, 3, ""]);
 		// The fourth layer
 		hexagons.push([0, -4, 4, ""]);  // The top
@@ -141,11 +148,7 @@
 		hexagons.push([4, -1, -3, ""]);
 		hexagons.push([4, 0, -4, ""]);
 
-		if (normalMode) {
-			hexagons.push([3, 1, -4, "github"]);
-		} else {
-			hexagons.push([3, 1, -4, ""]);
-		}
+		hexagons.push([3, 1, -4, ""]);
 		
 		hexagons.push([2, 2, -4, ""]);  // next to the bottom
 		hexagons.push([1, 3, -4, ""]);  // next to the bottom
@@ -161,6 +164,7 @@
 		hexagons.push([-3, -1, 4, ""]);
 		hexagons.push([-2, -2, 4, ""]);  // next to the top
 		hexagons.push([-1, -3, 4, ""]);  // next to the top
+		// These are the same in normal and mobile mode
 		// The fifth layer
 		hexagons.push([0, -5, 5, ""]);
 		hexagons.push([1, -5, 4, ""]);
@@ -275,40 +279,41 @@
 	}
 	setHexagons();
 
-	let colourIntensity = 30;
+	let colourIntensity = 75;
 	let zwaarLogo;
 </script>
 
-{#each hexagons as hexagon, i}
-	{#if hexagon[3] == "brocast"}
-		<BroCastHex q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></BroCastHex>
-	{:else if hexagon[3] == "team"}
-		<TeamHex q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></TeamHex>
-	{:else if hexagon[3] == "age of gold"}
-		<AgeOfGoldHex q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></AgeOfGoldHex>
-	{:else if hexagon[3] == "github"}
-		<GithubHex q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></GithubHex>
-	{:else if hexagon[3] == "contact"}
-		<ContactHex q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></ContactHex>
-	{:else if hexagon[3] == "hex place"}
-		<HexPlaceHex q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></HexPlaceHex>
-	{:else}
-		<RegularHexagon q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></RegularHexagon>
-	{/if}
-{/each}
-<ZwaarLogo colourIntensity={colourIntensity} hexSize={hexSize} bind:this={zwaarLogo}></ZwaarLogo>
+<main class:scroll-lock={disabledScroll}>
+	{#each hexagons as hexagon, i}
+		{#if hexagon[3] == "brocast"}
+			<BroCastHex q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></BroCastHex>
+		{:else if hexagon[3] == "team"}
+			<TeamHex q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></TeamHex>
+		{:else if hexagon[3] == "age of gold"}
+			<AgeOfGoldHex q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></AgeOfGoldHex>
+		{:else if hexagon[3] == "github"}
+			<GithubHex q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></GithubHex>
+		{:else if hexagon[3] == "contact"}
+			<ContactHex q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></ContactHex>
+		{:else if hexagon[3] == "hex place"}
+			<HexPlaceHex q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></HexPlaceHex>
+		{:else}
+			<RegularHexagon q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></RegularHexagon>
+		{/if}
+	{/each}
+	<ZwaarLogo colourIntensity={colourIntensity} hexSize={hexSize} bind:this={zwaarLogo}></ZwaarLogo>
 
-<div class="intensity_slider">
-	<p class="intensity_slider_text">Colour intensity: {colourIntensity}</p>
-	<input bind:value={colourIntensity} type="range" min="0" max="255" />
-</div>
+	<div class="intensity_slider">
+		<p class="intensity_slider_text">Colour intensity: {colourIntensity}</p>
+		<input bind:value={colourIntensity} type="range" min="0" max="255" />
+	</div>
 
-<main class:scroll-lock={false}>
+
 	<!-- Width is {screenWidth}px  Height is {screenHeight}px -->
 	<div class="screen_box" bind:this={screenBox}></div>
 </main>
 
-<svelte:window on:wheel|nonpassive|preventDefault />
+<svelte:window on:wheel|nonpassive|preventDefault bind:innerWidth bind:innerHeight/>
 
 <style>
 
@@ -330,29 +335,8 @@
 	main {
 		font-family: sans-serif;
 		text-align: center;
-
-		overflow: auto;
-		/* this will hide the scrollbar in mozilla based browsers */
-		overflow: -moz-scrollbars-none;
-		scrollbar-width: none;
-		/* this will hide the scrollbar in internet explorers */
-		-ms-overflow-style: none;
-	}
-	main::-webkit-scrollbar { 
-		width: 0 !important;
-		display: none;
 	}
 
-	/* the way we detect the screen size. 
-	We create an element and make it be the full size of the screen 
-	and we observe the width and height of this element. */
-	:global(body) {
-		margin: 0;
-		padding: 0;
-        color: #f7f8f9;
-		background-color: #131619;
-		touch-action: none;
-	}
 	.screen_box {
 		background-color: #131619;
 		width: 100vw;
