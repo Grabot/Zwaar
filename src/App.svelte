@@ -44,7 +44,6 @@
 		margin: 0;
 		padding: 0;
         color: #f7f8f9;
-		/* background-color: #131619; */
-		background-color: #000000;
+		background-color: #131619;
 	}
 </style>

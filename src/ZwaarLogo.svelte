@@ -22,7 +22,6 @@
 	let ySize = Math.sqrt(3) * hexSize;
 
     function setHexagonDetails() {
-		// console.log("setting hex details with size: " + hexSize);
 		// Size of the hexagon and the internal dimensions of the svg viewBox. 
 		xSize = 2 * hexSize;
 		ySize = Math.sqrt(3) * hexSize;
@@ -135,7 +134,6 @@
 	let hexFontSizeRatio = 3;
 	var hexFontSize = hexSize / hexFontSizeRatio;
 	export const updateHexagon = function(hexagonSize, normalMode) {
-        // console.log("updateHexagon: " + hexagonSize);
 		hexSize = hexagonSize;
 		hexTileCenter.updateHexagon(hexagonSize);
         hexTileSide1.updateHexagon(hexagonSize);
@@ -146,7 +144,6 @@
         hexTileSide6.updateHexagon(hexagonSize);
         setHexagonDetails();
 		getTilePos(normalMode);
-		console.log("Hex Size: " + hexSize);
 		hexFontSize = hexSize / hexFontSizeRatio;
     }
 
@@ -188,8 +185,6 @@
 	});
 
     function handleClick(e) {
-		console.log("click event: " + e);
-		// window.location.href="/terms";
 	}
 
     function parentToggle() { 

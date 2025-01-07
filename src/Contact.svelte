@@ -38,12 +38,9 @@
 <br>
 
 <h3 class="centered_text">Thank you for visiting Zwaar Developers</h3>
-<br>
 <h3 class="centered_text">If you want to get in touch with the team to ask for our services,</h3>
-<br>
-<h3 class="centered_text">please download our app "<i>Brocast</i>" and send a message to "<i>Sander</i> 🥰"</h3>
-<br>
-<h3 class="centered_text">Or send an email to the CEO at "<i>SanderKools@zwaar.dev</i>"</h3>
+<h3 class="centered_text">please download our app <i>Brocast</i> and send a message to <i>Sander</i> 🥰</h3>
+<h3 class="centered_text">Or send an email to the CEO at <i>SanderKools@zwaar.dev</i></h3>
 <br>
 <br>
 <br>

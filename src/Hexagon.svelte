@@ -42,7 +42,6 @@
 	// These hexagon points will be the same for all hexagons within their own viewbox dimensions.
 	var points = [];
 	function setHexagonDetails() {
-		// console.log("setting hex details with size: " + hexSize);
 		// Size of the hexagon and the internal dimensions of the svg viewBox. 
 		xSize = 2 * hexSize;
 		ySize = Math.sqrt(3) * hexSize;
@@ -63,7 +62,6 @@
 	setHexagonDetails();
 
 	export const updateHexagon = function(hexagonSize) {
-        // console.log("updateHexagon: " + hexagonSize);
 		hexSize = hexagonSize + 0.3;
 		hexFontSize = hexSize / hexFontSizeRatio;
 		setHexagonDetails();

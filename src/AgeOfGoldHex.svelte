@@ -44,7 +44,7 @@
 	onMount(() => {});
 
 	function handleClick(e) {
-		window.location.href="https://brocast.nl";
+		window.location.href="https://ageof.gold";
 	}
 
     function parentToggle() { }
