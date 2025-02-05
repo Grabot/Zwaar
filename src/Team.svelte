@@ -32,6 +32,7 @@
 		resizeObserver.observe(screenBox);
 		return () => resizeObserver.unobserve(screenBox);
 	});
+
 </script>
 
 <div class="screen_box" bind:this={screenBox}></div>
@@ -315,6 +316,35 @@
                 <br>
             </div>
         {/if}
+        {#if normalMode == true}
+            <div class="row">
+                <div class="column_text">
+                    <div><h3>Something with art: Sander's sister</h3></div>
+                    <div>Art is seen as the main output of Zwaar Developers. Art can change lives and it lives on forever in culture or in people's minds. But the one thing Zwaar Developers loves more than art is nepotism. So the founder's sister has been given full control of the entire departement that handles art. Their output has been consistent throughout the years, namely zero. The reasoning is that Sander's sister has indicated that all the art is done and requires no more new iterations.</div>
+                    <div><i>"art quote"</i></div>
+                </div>
+                <div class="column_image">
+                    <img class="person_image" style='--image_width:{image_width};' src={humanResourcesImage} alt="human-resources" />
+                </div>
+            </div>
+        {:else}
+            <div class="column_text_mobile">
+                <div><h3>Something with art: Sander's sister</h3></div>
+            </div>
+            <div class="column_image_mobile">
+                <img class="person_image_mobile" style='--image_width:{image_width};' src={humanResourcesImage} alt="human-resources" />
+            </div>
+            <div class="column_text_mobile">
+                <div>Art is seen as the main output of Zwaar Developers. Art can change lives and it lives on forever in culture or in people's minds. But the one thing Zwaar Developers loves more than art is nepotism. So the founder's sister has been given full control of the entire departement that handles art. Their output has been consistent throughout the years, namely zero. The reasoning is that Sander's sister has indicated that all the art is done and requires no more new iterations.</div>
+                <br>
+                <br>
+                <div><i>"art quote"</i></div>
+                <br>
+                <br>
+                <br>
+            </div>
+
+        {/if}
 
         <!-- Some spacing on the bottom -->
         <br>
@@ -373,11 +403,11 @@
         max-width:600px;
     }
     .person_image {
-        height: 100%;
+        aspect-ratio : 1 / 0.866;
         width: 100%;
     }
     .person_image_mobile {
-        height: 80%;
+        aspect-ratio : 1 / 0.866;
         width: 80%;
         margin-left: auto;
         margin-right: auto;
@@ -389,12 +419,14 @@
 		height: 1;
 	}
 
+    /* width: 2 * size  height: sqrt(3) * size. This gives approx 1 x 0.866 */
     .column_image {
-        float: left;
+        margin: auto;
         width: 30%;
         padding: 20px;
     }
     .column_image_mobile {
+        aspect-ratio : 1 / 0.866;
         width: 100%;
         padding: 20px;
     }

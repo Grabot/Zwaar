@@ -84,11 +84,4 @@
         width: calc( var(--image_width) * 1px );
         max-width:600px;
     }
-    .shadow_text {
-		fill: #FFF;
-		filter: drop-shadow( 1px  0px 0px black) 
-				drop-shadow(-1px  0px 0px black)
-				drop-shadow( 0px  1px 0px black) 
-				drop-shadow( 0px -1px 0px black);
-	}
 </style>

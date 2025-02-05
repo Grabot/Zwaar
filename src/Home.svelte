@@ -8,6 +8,7 @@
     import GithubHex from "./GithubHex.svelte";
     import ContactHex from "./ContactHex.svelte";
     import HexPlaceHex from "./HexPlaceHex.svelte";
+    import FlutterFlyHex from "./FlutterFlyHex.svelte";
 
 	let disabledScroll = false;
 
@@ -91,7 +92,7 @@
 		hexagons.push([2, -2, 0, "team"]);
 		
 		hexagons.push([2, -1, -1, ""]);
-		hexagons.push([2, 0, -2, ""]);
+		hexagons.push([2, 0, -2, "flutter fly"]);
 		hexagons.push([1, 1, -2, ""]);
 		
 		hexagons.push([0, 2, -2, "contact"]);
@@ -110,11 +111,7 @@
 		hexagons.push([3, -3, 0, ""]);
 		hexagons.push([3, -2, -1, ""]);
 
-		if (normalMode) {
-			hexagons.push([3, -1, -2, ""]);
-		} else {
-			hexagons.push([3, -1, -2, ""]);
-		}
+		hexagons.push([3, -1, -2, ""]);
 
 		hexagons.push([3, 0, -3, ""]);
 		hexagons.push([2, 1, -3, ""]);
@@ -127,15 +124,9 @@
 		hexagons.push([-3, 3, 0, ""]);
 		
 		hexagons.push([-3, 2, 1, ""]);
-		if (normalMode) {
-			hexagons.push([-3, 1, 2, ""]);
-			hexagons.push([-3, 0, 3, ""]);
-			hexagons.push([-2, -1, 3, ""]);
-		} else {
-			hexagons.push([-3, 1, 2, ""]);
-			hexagons.push([-3, 0, 3, ""]);
-			hexagons.push([-2, -1, 3, ""]);
-		}
+		hexagons.push([-3, 1, 2, ""]);
+		hexagons.push([-3, 0, 3, ""]);
+		hexagons.push([-2, -1, 3, ""]);
 		hexagons.push([-1, -2, 3, ""]);
 		// The fourth layer
 		hexagons.push([0, -4, 4, ""]);  // The top
@@ -297,6 +288,8 @@
 			<ContactHex q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></ContactHex>
 		{:else if hexagon[3] == "hex place"}
 			<HexPlaceHex q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></HexPlaceHex>
+		{:else if hexagon[3] == "flutter fly"}
+			<FlutterFlyHex q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></FlutterFlyHex>
 		{:else}
 			<RegularHexagon q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></RegularHexagon>
 		{/if}

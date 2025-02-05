@@ -236,24 +236,6 @@
 
 <style>
 
-    .logo_text {
-		pointer-events: None;
-        font-size: 3vw;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-
-        transform: 
-			translate(
-				-50%,
-				-50%
-				)
-			translate(
-				calc( var(--pos_x) * 1px ),
-				calc( var(--pos_y) * 1px )
-				);
-	}
-
 	.hex_item {
 		pointer-events: None;
 		position: absolute;
