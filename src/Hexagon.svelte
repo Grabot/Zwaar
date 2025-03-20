@@ -29,7 +29,6 @@
 	if (logoHex) {
 		className = "hex_polygon_logo"
 	}
-    let humanResourcesImage = "/images/HumanResources.png";
 
 	// Size of the hexagon and the internal dimensions of the svg viewBox. 
 	let xSize = 2 * hexSize;

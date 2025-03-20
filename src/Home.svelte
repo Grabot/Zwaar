@@ -9,6 +9,7 @@
     import ContactHex from "./ContactHex.svelte";
     import HexPlaceHex from "./HexPlaceHex.svelte";
     import FlutterFlyHex from "./FlutterFlyHex.svelte";
+	import ArtHex from "./ArtHex.svelte";
 
 	let disabledScroll = false;
 
@@ -132,7 +133,7 @@
 		hexagons.push([0, -4, 4, ""]);  // The top
 		hexagons.push([1, -4, 3, ""]);  // next to the top
 		hexagons.push([2, -4, 2, ""]);  // next to the top
-		hexagons.push([3, -4, 1, ""]);
+		hexagons.push([3, -4, 1, "art"]);
 		hexagons.push([4, -4, 0, ""]);
 		hexagons.push([4, -3, -1, ""]);
 		hexagons.push([4, -2, -2, ""]);
@@ -290,6 +291,8 @@
 			<HexPlaceHex q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></HexPlaceHex>
 		{:else if hexagon[3] == "flutter fly"}
 			<FlutterFlyHex q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></FlutterFlyHex>
+		{:else if hexagon[3] == "art"}
+			<ArtHex q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></ArtHex>
 		{:else}
 			<RegularHexagon q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></RegularHexagon>
 		{/if}

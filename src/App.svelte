@@ -8,9 +8,11 @@
     import Contact from "./Contact.svelte";
 
 	export let url = "";
-
-    let body_colour = '#f7f8f9';
 </script>
+
+<svelte:head>
+    <title>Zwaar Developers</title> 
+</svelte:head>
 
 <div>
 	<Router url="{url}" >

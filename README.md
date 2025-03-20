@@ -41,4 +41,6 @@ You can preview the production build with `npm run preview`.
 
 ## docker example
 
-https://github.com/ehemmerlin/svelter
+podman build -t zwaar_app . 
+podman-compose run --rm zwaar_app npm install 
+podman-compose up
