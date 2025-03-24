@@ -46,17 +46,17 @@
 			quote: "Few things in life are as eloquent or beautiful as Export. When I'm exporting I get chills and it makes me happy. There is only one thing I love more in life than Export and that is Import"
 		},
 		{
+			name: "Something with art: Sander Kools's sister",
+			image: "/images/art_manager.png",
+			description: "Art is seen as the main output of Zwaar Developers. Art can change lives and it lives on forever in culture or in people's minds. But the one thing Zwaar Developers loves more than art is nepotism. So the founder's sister has been given full control of the entire departement that handles art. Their output has been consistent throughout the years, namely zero. The reasoning is that Sander's sister has indicated that all the art is done and requires no more new iterations.",
+			quote: "Art is not about perfection. It's about the perfect imperfection of being human."
+		},
+		{
 			name: "Human Resources Manager: Luc",
 			image: "/images/HumanResources.png",
 			description: "At Zwaar Developers, they wanted to create a negative workplace culture. For this they needed a truly awful Human Resources Manager, they found their perfect candidate in Luc. He always misses meetings and never responds to emails. If you have a situation and you go to talk to him all he does is nod enthusiastically while completely ignoring every concern brought to him. Need help with your benefits? Good luck getting him to explain them without pulling up a YouTube tutorial mid-meeting. Confused about company policies? Well, so is he. A decent HR department is essential for any large company, that is why Zwaar Developer will never truly get as big as it deserve to be.",
 			quote: "When it comes to Makro management, I believe in empowering employees to figure things out on their own. HR can’t do everything, right?"
 		},
-		{
-			name: "Something with art: Sander's sister",
-			image: "/images/art_manager.png",
-			description: "Art is seen as the main output of Zwaar Developers. Art can change lives and it lives on forever in culture or in people's minds. But the one thing Zwaar Developers loves more than art is nepotism. So the founder's sister has been given full control of the entire departement that handles art. Their output has been consistent throughout the years, namely zero. The reasoning is that Sander's sister has indicated that all the art is done and requires no more new iterations.",
-			quote: "art quote"
-		}
 	];
 
 	let screenBox;
