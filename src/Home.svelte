@@ -10,6 +10,7 @@
     import HexPlaceHex from "./HexPlaceHex.svelte";
     import FlutterFlyHex from "./FlutterFlyHex.svelte";
 	import ArtHex from "./ArtHex.svelte";
+    import AdventureHex from "./AdventureHex.svelte";
 
 	let disabledScroll = false;
 
@@ -82,7 +83,7 @@
 		
 		hexagons.push([1, 0, -1, "brocast"]);
 		
-		hexagons.push([0, 1, -1, ""]);
+		hexagons.push([0, 1, -1, "adventure tracker"]);
 		hexagons.push([-1, 1, 0, "age of gold"]);
 		
 		hexagons.push([-1, 0, 1, ""]);
@@ -283,6 +284,8 @@
 			<TeamHex q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></TeamHex>
 		{:else if hexagon[3] == "age of gold"}
 			<AgeOfGoldHex q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></AgeOfGoldHex>
+		{:else if hexagon[3] == "adventure tracker"}
+			<AdventureHex q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></AdventureHex>
 		{:else if hexagon[3] == "github"}
 			<GithubHex q={hexagon[0]} r={hexagon[1]} colourIntensity={colourIntensity} hexSize={hexSize} bind:this={hex[i]}></GithubHex>
 		{:else if hexagon[3] == "contact"}

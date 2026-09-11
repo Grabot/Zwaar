@@ -9,8 +9,8 @@ services:
     working_dir: /app
     command: npm run dev -- --host
     ports:
-      - "32769:32769"
+      - "8080:8080"
     environment:
       - NODE_ENV=development
-      - PORT=32769
+      - PORT=8080
       - HOST=0.0.0.0

@@ -135,7 +135,7 @@
     .container_image {
         height: auto;
         width: calc( var(--image_width) * 1px );
-        max-width: 800px;
+        max-width: 600px;
     }
     .image_container {
         display: flex;
